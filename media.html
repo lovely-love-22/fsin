@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>RMRP | Медиа-галерея</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="logo">⚖️ RMRP <span>ФСИН</span></a>
+  <nav>
+    <a href="index.html">Главная</a>
+    <a href="federation-charter.html">Устав УФСИН</a>
+    <a href="federation-rules.html">Регламенты и ШИЗО</a>
+    <a href="audit.html">Калькулятор</a>
+    <a href="profile.html">Профиль</a>
+  </nav>
+</header>
+
+<div class="container mt-20">
+  <h1>🎬 Медиа-галерея</h1>
+  <p style="color:var(--dim); margin-bottom:20px">Здесь можно хранить скрины и видео со службы. Всё сохраняется локально.</p>
+  
+  <div class="card">
+    <h2>Добавить файл</h2>
+    <div class="form-group">
+      <label>Название</label>
+      <input type="text" id="mediaTitle" placeholder="Название файла">
+    </div>
+    <div class="form-group">
+      <label>Ссылка на файл (картинка/видео)</label>
+      <input type="text" id="mediaUrl" placeholder="https://...">
+    </div>
+    <button class="btn" onclick="addMedia()">Добавить</button>
+  </div>
+
+  <div class="card mt-20">
+    <h2>Загруженные файлы</h2>
+    <div id="mediaList" style="display:flex; flex-wrap:wrap; gap:10px; margin-top:15px;"></div>
+  </div>
+</div>
+
+<script>
+  function addMedia() {
+    const title = document.getElementById('mediaTitle').value.trim();
+    const url = document.getElementById('mediaUrl').value.trim();
+    if (!title || !url) return alert('Заполните поля!');
+    
+    let media = JSON.parse(localStorage.getItem('fsin_media') || '[]');
+    media.push({ title, url });
+    localStorage.setItem('fsin_media', JSON.stringify(media));
+    
+    document.getElementById('mediaTitle').value = '';
+    document.getElementById('mediaUrl').value = '';
+    renderMedia();
+  }
+
+  function renderMedia() {
+    const media = JSON.parse(localStorage.getItem('fsin_media') || '[]');
+    const list = document.getElementById('mediaList');
+    if (media.length === 0) {
+      list.innerHTML = '<p style="color:var(--dim)">Пока нет файлов</p>';
+      return;
+    }
+    list.innerHTML = media.map(m => `
+      <div style="background:#000; border:1px solid var(--border); border-radius:8px; padding:10px; width:200px;">
+        <img src="${m.url}" style="width:100%; height:120px; object-fit:cover; border-radius:4px; margin-bottom:8px;" onerror="this.style.display='none'">
+        <div style="font-size:13px; color:#fff; word-break:break-all;">${m.title}</div>
+      </div>
+    `).join('');
+  }
+
+  renderMedia();
+</script>
+</body>
+</html>
