@@ -3,195 +3,1456 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#05080a">
-<title>RMRP | УФСИН РФ</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚖️</text></svg>">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<title>Устав ФСИН • КоАП • УК РФ — Справочник</title>
 <style>
-:root { 
-  --bg: #05080a; 
-  --card: #0b1116; 
-  --border: #16222d; 
-  --accent: #3b82f6; /* Синий ФСИН */
-  --text: #c9d1d9; 
-  --dim: #8b949e; 
-}
-body { 
-  background-color: var(--bg); 
-  background-image: radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.08), transparent 50%), linear-gradient(rgba(5, 8, 10, 0.95), rgba(5, 8, 10, 0.98));
-  background-attachment: fixed; color: var(--text); font-family: 'Inter', sans-serif; margin: 0; padding: 0;
-  min-height: 100vh;
-}
-header { border-bottom: 1px solid var(--border); padding: 20px; display: flex; justify-content: space-between; align-items: center; background: rgba(5, 8, 10, 0.8); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100; }
-.logo { font-size: 20px; font-weight: 900; font-family: 'JetBrains Mono', monospace; color: #fff; text-decoration: none; display: flex; align-items: center; gap: 8px; }
-.logo span { color: var(--accent); }
-nav { display: flex; gap: 15px; font-family: 'JetBrains Mono', monospace; font-size: 13px; }
-nav a { color: var(--dim); text-decoration: none; padding: 6px 12px; transition: 0.2s; border-radius: 6px; }
-nav a:hover, nav a.active { background: rgba(59, 130, 246, 0.1); color: var(--accent); }
-nav a.active { background: var(--accent); color: #000; font-weight: bold; }
-.container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
-.hero { text-align: center; margin-bottom: 50px; padding: 40px 20px; background: radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.1), transparent 70%); border-radius: 20px; border: 1px solid var(--border); }
-.hero h1 { font-family: 'JetBrains Mono', monospace; font-size: 42px; color: #fff; margin: 0 0 10px 0; }
-.hero p { color: var(--dim); font-size: 16px; max-width: 600px; margin: 0 auto; }
-.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
-.card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; color: inherit; transition: 0.3s; position: relative; overflow: hidden; display: flex; flex-direction: column; }
-.card:hover { transform: translateY(-4px); border-color: var(--accent); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-.card::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--accent); opacity: 0; transition: 0.3s; }
-.card:hover::before { opacity: 1; }
-.card-icon { font-size: 32px; margin-bottom: 16px; }
-.card-title { font-family: 'JetBrains Mono', monospace; font-size: 18px; font-weight: 700; color: #fff; margin-bottom: 8px; }
-.card-desc { font-size: 14px; color: var(--dim); line-height: 1.5; }
-
-/* ИИ-ПОМОЩНИК */
-#aiBtn { color: #a855f7; font-weight: 900; cursor: pointer; }
-.ai-dropdown { position: absolute; top: 70px; right: 20px; width: 350px; background: #0b1116; border: 1px solid #a855f7; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.8); display: none; flex-direction: column; z-index: 999; overflow: hidden; }
-.ai-dropdown.active { display: flex; animation: dropIn 0.3s ease; }
-@keyframes dropIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
-.ai-chat-head { padding: 12px 16px; border-bottom: 1px solid #1a242b; background: #0f1419; display: flex; justify-content: space-between; align-items: center; font-family: monospace; font-size: 13px; font-weight: bold; color: #fff; }
-.ai-chat-body { max-height: 300px; overflow-y: auto; padding: 12px; display: flex; flex-direction: column; gap: 8px; background: #05080a; }
-.ai-msg { max-width: 85%; padding: 8px 12px; border-radius: 10px; font-size: 12.5px; line-height: 1.4; word-wrap: break-word; }
-.ai-msg.bot { background: rgba(168, 85, 247, 0.1); border: 1px solid rgba(168, 85, 247, 0.2); color: #c9d1d9; align-self: flex-start; }
-.ai-msg.user { background: #a855f7; color: #fff; align-self: flex-end; }
-.ai-msg a { color: #3b82f6; font-weight: bold; text-decoration: none; }
-.ai-chat-input-wrap { padding: 10px; border-top: 1px solid #1a242b; display: flex; gap: 8px; background: #0f1419; }
-.ai-chat-input { flex: 1; padding: 8px 12px; border-radius: 6px; background: #000; border: 1px solid #1a242b; color: #fff; outline: none; font-family: inherit; }
-.ai-chat-send { padding: 0 12px; border-radius: 6px; background: #a855f7; color: #fff; font-weight: bold; border: none; cursor: pointer; }
+  :root{
+    --bg:#0b0f14;
+    --bg2:#111823;
+    --card:#151e2b;
+    --card2:#1a2536;
+    --line:#243247;
+    --txt:#e6edf6;
+    --muted:#8ea3bd;
+    --accent:#4da3ff;
+    --accent2:#7c5cff;
+    --ok:#2ecc71;
+    --warn:#ffb020;
+    --danger:#ff4d5e;
+    --shadow:0 10px 30px rgba(0,0,0,.35);
+    --radius:14px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:radial-gradient(1200px 600px at 10% -10%, #16233a 0%, var(--bg) 55%) fixed;color:var(--txt);font-family:"Segoe UI",Roboto,Arial,sans-serif;line-height:1.55}
+  a{color:var(--accent);text-decoration:none}
+  header{
+    position:sticky;top:0;z-index:50;
+    backdrop-filter:blur(14px);
+    background:linear-gradient(180deg, rgba(17,24,35,.92), rgba(17,24,35,.75));
+    border-bottom:1px solid var(--line);
+  }
+  .topbar{max-width:1400px;margin:0 auto;padding:14px 20px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px;letter-spacing:.3px}
+  .logo .badge{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:grid;place-items:center;font-size:18px;box-shadow:var(--shadow)}
+  .search-wrap{flex:1;min-width:260px;position:relative}
+  #search{
+    width:100%;padding:12px 16px 12px 42px;border-radius:12px;border:1px solid var(--line);
+    background:var(--bg2);color:var(--txt);font-size:15px;outline:none;transition:.2s;
+  }
+  #search:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(77,163,255,.15)}
+  .search-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);opacity:.6}
+  .tabs{display:flex;gap:8px;flex-wrap:wrap}
+  .tab{padding:9px 16px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--muted);cursor:pointer;font-weight:600;font-size:14px;transition:.2s}
+  .tab:hover{color:var(--txt);border-color:#34496a}
+  .tab.active{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border-color:transparent}
+  .layout{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:280px 1fr;gap:22px;padding:22px 20px 80px}
+  nav.toc{
+    position:sticky;top:96px;align-self:start;max-height:calc(100vh - 120px);overflow:auto;
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:14px;
+  }
+  nav.toc h4{margin:10px 6px 6px;font-size:11px;letter-spacing:1.4px;text-transform:uppercase;color:var(--muted)}
+  nav.toc a{display:block;padding:7px 10px;border-radius:8px;color:var(--muted);font-size:13.5px}
+  nav.toc a:hover{background:var(--card2);color:var(--txt)}
+  main{min-width:0}
+  section.doc{display:none}
+  section.doc.active{display:block;animation:fade .25s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  .doc-title{font-size:26px;font-weight:800;margin:4px 0 18px;display:flex;align-items:center;gap:10px}
+  .doc-title .pill{font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;background:rgba(77,163,255,.15);color:var(--accent);border:1px solid rgba(77,163,255,.3)}
+  .chapter{margin:26px 0 10px;padding:14px 18px;border-radius:12px;background:linear-gradient(90deg, rgba(124,92,255,.16), rgba(77,163,255,.08));border:1px solid var(--line);font-weight:800;font-size:17px;scroll-margin-top:100px}
+  .article{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;margin:12px 0;transition:.2s;scroll-margin-top:100px}
+  .article:hover{border-color:#34496a;transform:translateY(-1px)}
+  .article.hit{outline:2px solid var(--accent);box-shadow:0 0 0 4px rgba(77,163,255,.15)}
+  .art-head{display:flex;align-items:flex-start;gap:12px;justify-content:space-between;flex-wrap:wrap}
+  .art-num{font-weight:800;color:var(--accent);font-size:15px;white-space:nowrap}
+  .art-title{font-weight:700;font-size:16px;flex:1;min-width:200px}
+  .art-body{margin-top:10px;color:#c6d4e6;font-size:14.5px;white-space:pre-wrap}
+  .badges{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+  .badge{font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;border:1px solid var(--line);background:var(--card2)}
+  .b-fine{color:#ffd166;border-color:rgba(255,209,102,.35);background:rgba(255,209,102,.08)}
+  .b-term{color:#ff7b8a;border-color:rgba(255,123,138,.35);background:rgba(255,123,138,.08)}
+  .b-prp{color:#9b8cff;border-color:rgba(155,140,255,.35);background:rgba(155,140,255,.08)}
+  .b-ok{color:#5ee6a0;border-color:rgba(94,230,160,.35);background:rgba(94,230,160,.08)}
+  .b-warn{color:#ffb020;border-color:rgba(255,176,32,.35);background:rgba(255,176,32,.08)}
+  .no-results{padding:40px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:var(--radius);margin:20px 0}
+  .hit-stats{position:fixed;right:20px;bottom:20px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 16px;font-size:13px;color:var(--muted);box-shadow:var(--shadow);display:none;z-index:60}
+  .hit-stats.show{display:block}
+  .hit-stats b{color:var(--accent)}
+  @media(max-width:900px){.layout{grid-template-columns:1fr}nav.toc{position:static;max-height:none;order:2}}
+  ::-webkit-scrollbar{width:10px;height:10px}
+  ::-webkit-scrollbar-thumb{background:#26364f;border-radius:10px}
+  ::-webkit-scrollbar-track{background:transparent}
+  mark{background:rgba(77,163,255,.35);color:#fff;border-radius:3px;padding:0 2px}
 </style>
 </head>
 <body>
 
 <header>
-  <a href="index.html" class="logo"><span>⚖️</span> RMRP <span>ФСИН</span></a>
-  <nav>
-    <a href="index.html" class="active">Главная</a>
-    <a href="federation-charter.html">Устав УФСИН</a>
-    <a href="federation-rules.html">Регламенты и ШИЗО</a>
-    <a href="uk.html">УК РФ</a>
-    <a href="koap.html">КоАП РФ</a>
-    <a href="process.html">Процессуальный</a>
-    <a href="audit.html">Калькулятор баллов</a>
-    <a href="profile.html">Профиль</a>
-    <a href="#" id="aiBtn">🤖 ИИ-Юрист</a>
-  </nav>
+  <div class="topbar">
+    <div class="logo"><div class="badge">⚖️</div><div>Устав ФСИН • КоАП • УК РФ</div></div>
+    <div class="search-wrap">
+      <span class="search-icon">🔎</span>
+      <input id="search" type="text" placeholder="ИИ-поиск: номер статьи (5.1), название (кража), слово (штраф, арест, побег)…">
+    </div>
+    <div class="tabs">
+      <button class="tab active" data-doc="ustav">📜 Устав</button>
+      <button class="tab" data-doc="koap">⚖️ КоАП</button>
+      <button class="tab" data-doc="uk">🔪 УК РФ</button>
+    </div>
+  </div>
 </header>
 
-<!-- ИИ-ОКНО -->
-<div class="ai-dropdown" id="aiDropdown">
-  <div class="ai-chat-head">
-    <span><span style="color:#a855f7">●</span> Юрист ФСИН (ИИ)</span>
-    <span style="font-size:10px; color:#8b949e;">СПРАВКА</span>
-  </div>
-  <div class="ai-chat-body" id="aiChatBody">
-    <div class="ai-msg bot">Приветствую. Спроси меня о статье (напр: "срок за кражу").</div>
-  </div>
-  <div class="ai-chat-input-wrap">
-    <input type="text" class="ai-chat-input" id="aiChatInput" placeholder="Введите вопрос..." onkeypress="if(event.key==='Enter')window.sendAI()">
-    <button class="ai-chat-send" onclick="window.sendAI()">➤</button>
-  </div>
+<div class="layout">
+  <nav class="toc" id="toc"></nav>
+  <main id="main">
+
+    <!-- ================= УСТАВ ================= -->
+    <section class="doc active" id="doc-ustav">
+      <div class="doc-title">📜 Устав ИК-7 УФСИН <span class="pill">Полный текст</span></div>
+
+      <div class="chapter" id="u-gl1">Глава I. Общие положения</div>
+      <div class="article" data-search="1.1 устав локальный нормативный акт исправительной колонии №7">
+        <div class="art-head"><span class="art-num">1.1</span><span class="art-title">Статус Устава</span></div>
+        <div class="art-body">Настоящий Устав является локальным нормативным актом, регламентирующим деятельность Исправительной колонии №7 Управления Федеральной службы исполнения наказаний Российской Федерации по Рублевскому федеральному округу (далее — ИК-7 УФСИН).</div>
+      </div>
+      <div class="article" data-search="1.2 учредитель правительство рублевского федерального округа">
+        <div class="art-head"><span class="art-num">1.2</span><span class="art-title">Учредитель</span></div>
+        <div class="art-body">Учредителем ИК-7 УФСИН является Правительство Рублевского Федерального округа.</div>
+      </div>
+      <div class="article" data-search="1.3 государственное учреждение местонахождение московская область исаково зарайск">
+        <div class="art-head"><span class="art-num">1.3</span><span class="art-title">Местонахождение</span></div>
+        <div class="art-body">ИК-7 УФСИН является государственным учреждением. Местонахождение организации: Московская область, автодорога Исаково — Зарайск, 4-й километр, владение 1.</div>
+      </div>
+      <div class="article" data-search="1.4 управление начальник заместители">
+        <div class="art-head"><span class="art-num">1.4</span><span class="art-title">Управление</span></div>
+        <div class="art-body">Управление ИК-7 УФСИН осуществляется начальником учреждения и его заместителями.</div>
+      </div>
+      <div class="article" data-search="1.5 изменения устав руководство уфсин правительство">
+        <div class="art-head"><span class="art-num">1.5</span><span class="art-title">Изменения в Устав</span></div>
+        <div class="art-body">Внесение изменений в настоящий Устав осуществляется руководством УФСИН с обязательным последующим утверждением Правительством Рублевского федерального округа.</div>
+      </div>
+      <div class="article" data-search="1.6 прием увольнение работников права обязанности режим работы отдых поощрения взыскания">
+        <div class="art-head"><span class="art-num">1.6</span><span class="art-title">Предмет регулирования</span></div>
+        <div class="art-body">Настоящий Устав регламентирует в соответствии с законодательством порядок приема и увольнения работников, основные права, обязанности и ответственность сторон, режим работы, время отдыха, применяемые меры поощрения и взыскания, а также иные вопросы регулирования служебных отношений.</div>
+      </div>
+      <div class="article" data-search="1.7 обязателен для исполнения сотрудников">
+        <div class="art-head"><span class="art-num">1.7</span><span class="art-title">Обязательность</span></div>
+        <div class="art-body">Настоящий Устав обязателен для исполнения всеми сотрудниками учреждения.</div>
+      </div>
+      <div class="article" data-search="1.8 служебная дисциплина соблюдение порядка правил">
+        <div class="art-head"><span class="art-num">1.8</span><span class="art-title">Служебная дисциплина</span></div>
+        <div class="art-body">Служебная дисциплина — соблюдение сотрудником установленных законодательством Российской Федерации, настоящим уставом, приказами и распоряжениями руководителей порядка и правил исполнения служебных обязанностей.</div>
+      </div>
+      <div class="article" data-search="1.9 обеспечение служебной дисциплины ответственность приказы квалификация контроль поощрения взыскания уважение">
+        <div class="art-head"><span class="art-num">1.9</span><span class="art-title">Обеспечение служебной дисциплины</span></div>
+        <div class="art-body">Служебная дисциплина в ИК-7 УФСИН обеспечивается:
+а) ответственностью каждого сотрудника за выполнение своих служебных обязанностей;
+б) соблюдением сотрудником порядка и правил выполнения служебных обязанностей, правил внутреннего служебного распорядка учреждения, правил ношения форменной одежды;
+в) неукоснительным исполнением сотрудником приказов, не противоречащих законодательству Российской Федерации;
+г) соблюдением требований к служебному поведению сотрудников;
+д) поддержанием сотрудником уровня квалификации, необходимого для выполнения служебных обязанностей;
+е) воспитанием сотрудников, формированием у них личных и деловых качеств;
+ж) ответственностью руководителя за состояние служебной дисциплины среди подчиненных;
+з) осуществлением повседневного контроля со стороны руководителей;
+и) обоснованным применением руководителями мер поощрения и дисциплинарных взысканий;
+к) уважением руководителем чести и достоинства подчиненных сотрудников.</div>
+      </div>
+
+      <div class="chapter" id="u-gl2">Глава II. Порядок приема и увольнения работников</div>
+      <div class="article" data-search="2.1 перечень документов трудоустройство паспорт медицинская карта нарколог водительское удостоверение личное дело">
+        <div class="art-head"><span class="art-num">2.1</span><span class="art-title">Документы для трудоустройства</span></div>
+        <div class="art-body">Перечень документов, необходимых для трудоустройства во ФСИН:
+а) Паспорт гражданина Российской Федерации;
+б) Медицинская карта;
+в) Справка от нарколога;
+г) Водительское удостоверение;
+д) Личное дело.</div>
+      </div>
+      <div class="article" data-search="2.2 критерии гражданина возраст 18 моральная физическая подготовка адекватность опрятный внешний вид судимость">
+        <div class="art-head"><span class="art-num">2.2</span><span class="art-title">Критерии для вступления во ФСИН</span></div>
+        <div class="art-body">Критерии гражданина для вступления во ФСИН:
+а) Возраст от 18 лет;
+б) Моральная и физическая подготовка;
+в) Адекватность и опрятный внешний вид;
+г) Отсутствие непогашенной судимости.</div>
+      </div>
+      <div class="article" data-search="2.3 расторжение трудового договора увольнение три дисциплинарных выговора">
+        <div class="art-head"><span class="art-num">2.3</span><span class="art-title">Расторжение договора</span></div>
+        <div class="art-body">Расторжение трудового договора и увольнение сотрудника осуществляются в порядке, предусмотренном трудовым законодательством Российской Федерации, в том числе при достижении сотрудником трех дисциплинарных выговоров.</div>
+      </div>
+
+      <div class="chapter" id="u-gl3">Глава III. Права и обязанности работников</div>
+      <div class="article" data-search="3.1 обязанности сотрудника знать служебные обязанности устав законы приказы субординация этика уважение тайна руководство физическая сила оружие двери ворота посторонние распорядок аттестация боди-камера рация">
+        <div class="art-head"><span class="art-num">3.1</span><span class="art-title">Обязанности сотрудника</span></div>
+        <div class="art-body">Обязанности сотрудника:
+а) знать служебные обязанности и соблюдать внутренний устав УФСИН, законы Российской Федерации, нормативные акты, имеющие отношение к работе ведомства;
+б) исполнять приказы, не противоречащие законодательству Российской Федерации;
+в) соблюдать субординацию, безоговорочно выполнять приказы старшего по званию, вести общение с учетом норм этики;
+г) проявлять уважение ко всем сотрудникам вне зависимости от их служебного положения и места службы;
+д) не разглашать сведения, составляющие государственную и иную охраняемую законодательством тайну, а также сведения, касающиеся частной жизни и здоровья граждан;
+е) знать руководство УФСИН и Правительства РФ в лицо: майоров, подполковников, полковников, генерал-майоров внутренней службы, заместителей министра юстиции, министра юстиции, вице-премьер-министров, премьер-министра;
+ж) применять физическую силу, специальные средства, оружие, боевую и специальную технику в случаях и порядке, установленном законодательством;
+з) закрывать все двери и ворота на территории учреждения;
+и) в случае проникновения на территорию ИК-7 посторонних лиц задержать нарушителя;
+к) соблюдать распорядок дня и режим работы, установленные руководством;
+л) проходить регулярную аттестацию и повышать свою квалификацию;
+м) при заступлении на службу иметь при себе рабочую боди-камеру (средство видеофиксации) и включенную служебную рацию.</div>
+      </div>
+      <div class="article" data-search="3.2 запреты наркотики спиртные напитки пост криминальные группировки имущество пропуск третьи лица приказы рация транспорт татуировки борода усы оскорблять патруль блок А блок Б">
+        <div class="art-head"><span class="art-num">3.2</span><span class="art-title">Запреты сотрудника</span></div>
+        <div class="art-body">Запреты сотрудника:
+а) хранить, употреблять, распространять запрещенные наркотические или психотропные вещества, проносить и употреблять спиртные напитки;
+б) самовольно покидать пост или территорию учреждения без оформления рапорта на отгул;
+в) иметь контакты и связь с криминальными группировками (сотрудник обязан сообщить об этом руководству, если ему стало известно о таких связях);
+г) использовать служебное имущество не по его прямому назначению, продавать или отдавать имущество государственной организации;
+д) намеренно портить государственное или чужое частное имущество без видимой причины;
+е) приводить или пропускать на территорию учреждения третьих лиц без пропуска.
+Исключения: Допуск на закрытую территорию учреждения без проведения процедуры оформления пропуска имеют: Полномочный представитель Президента Российской Федерации в Федеральном округе, Губернатор и Вице-губернаторы Федерального округа, Министр юстиции и его заместители, сотрудники аппарата Министерства юстиции, начальник территориального органа Федеральной службы безопасности, Председатель Совета Федерации, Председатель законодательного собрания Федерального округа, судьи Российской Федерации, а также сотрудники органов прокуратуры Российской Федерации и следователи Следственного комитета Российской Федерации при предъявлении служебного удостоверения. Сотрудники органов уголовно-исполнительной системы обязаны сопровождать указанных лиц во время их нахождения на территории учреждения.
+ж) нарушать приказы или игнорировать их, а также запросы по рации;
+з) въезжать на личном транспорте на территорию учреждения (кроме зарегистрированного в реестре);
+и) использовать личный транспорт, находясь по форме при исполнении;
+к) причинять вред сотрудникам, предоставлять заведомо ложные сведения (обманывать) руководство и старший начальствующий состав;
+л) осуществлять проезд на территорию без проверки документов, пропуска и осмотра автомобиля (исключение: высший начальствующий состав);
+м) осуществлять любого рода отдых во время несения службы вне специально отведенных для этого мест и времени (кроме краткосрочного отдыха в Раздевалке или комнате Отдыха);
+н) иметь татуировки на видных частях тела (все татуировки должны быть полностью скрыты форменной одеждой), носить не предусмотренные регламентом аксессуары, а также бороды и усы, выступающие за уголки рта;
+о) оскорблять или унижать честь и достоинство гражданских лиц и сотрудников других структур;
+п) выезжать в город без разрешения Старшего Состава (на патруль могут выезжать только сотрудники ОБР и Старший Состав);
+р) сотрудникам в звании рядового и младшего сержанта внутренней службы заходить на территорию Блока «А» и Блока «Б».</div>
+      </div>
+      <div class="article" data-search="3.3 этика поведение профессиональная этика уважение опрятный внешний вид конфиденциальность конфликты">
+        <div class="art-head"><span class="art-num">3.3</span><span class="art-title">Этика и поведение</span></div>
+        <div class="art-body">Этика и поведение:
+а) сотрудники обязаны соблюдать высокие стандарты профессиональной этики;
+б) уважительно общаться с гражданскими лицами;
+в) поддерживать опрятный внешний вид;
+г) воздерживаться от публичного обсуждения внутренних вопросов службы;
+д) соблюдать конфиденциальность в отношении служебной информации;
+е) не допускать конфликтов на рабочем месте.</div>
+      </div>
+      <div class="article" data-search="3.4 субординация так точно никак нет есть товарищ звание разрешите обратиться спор конфликт">
+        <div class="art-head"><span class="art-num">3.4</span><span class="art-title">Субординация</span></div>
+        <div class="art-body">Субординация:
+а) устное общение регламентируется правилами субординации;
+б) согласие выражается фразой: «Так точно!»; несогласие: «Никак нет!»; подтверждение приказа: «Есть!»;
+в) обращение к старшему по званию: «Товарищ (звание), разрешите обратиться!»;
+г) запрещено вступать в спор или конфликт со старшим по званию.</div>
+      </div>
+      <div class="article" data-search="3.5 правила пользования рацией мат бранные слова конфликтные ситуации шум режим рации">
+        <div class="art-head"><span class="art-num">3.5</span><span class="art-title">Правила пользования рацией</span></div>
+        <div class="art-body">Правила пользования рацией:
+а) запрещены словесные перепалки с использованием мата и бранных слов;
+б) запрещено создавать конфликтные ситуации, засорять частоту рации шумом и посторонними разговорами;
+в) необходимо находиться в режиме рации и быть готовым к приему сообщений, запрещено игнорировать обращения.</div>
+      </div>
+      <div class="article" data-search="3.6 форменное обмундирование форма звание украшения дресс-код парадная боевая ОБР специальная операция высший старший начальствующий состав">
+        <div class="art-head"><span class="art-num">3.6</span><span class="art-title">Правила ношения формы</span></div>
+        <div class="art-body">Правила ношения форменного обмундирования:
+а) все сотрудники обязаны носить чистую форму, соответствующую их званию и служебному положению;
+б) запрещено ношение нерегламентированных украшений;
+в) необходимо соблюдать дресс-код, утвержденный внутренними регламентами и доводимый до личного состава по закрытым ведомственным каналам связи;
+г) парадная форма надевается только на официальные деловые встречи/мероприятия;
+д) боевую специальную форму ОБР другим подразделениям разрешено носить только при проведении специальной операции/нападения;
+е) высший и старший начальствующий состав носит форменное обмундирование строго в соответствии с установленным регламентом и правилами внешнего вида государственных служащих.</div>
+      </div>
+
+      <div class="chapter" id="u-gl4">Глава IV. Режим работы и время отдыха, оплата труда</div>
+      <div class="article" data-search="4.1 право на отдых трудовое законодательство">
+        <div class="art-head"><span class="art-num">4.1</span><span class="art-title">Право на отдых</span></div>
+        <div class="art-body">Каждый сотрудник ФСИН имеет право на отдых в соответствии с трудовым законодательством Российской Федерации.</div>
+      </div>
+      <div class="article" data-search="4.2 денежное довольствие оплата переработки отпуск трудовой кодекс безопасность">
+        <div class="art-head"><span class="art-num">4.2</span><span class="art-title">Оплата труда и отпуск</span></div>
+        <div class="art-body">Сотрудник имеет право на денежное довольствие, оплату за переработки, отпуск в соответствии с Трудовым Кодексом РФ, а также на соблюдение трудовых норм и стандартов безопасности.</div>
+      </div>
+      <div class="article" data-search="4.3 служебный график будни 09:00 21:00 выходные праздничные 09:00 20:00 обеденный перерыв 14:00 15:00">
+        <div class="art-head"><span class="art-num">4.3</span><span class="art-title">Служебный график</span></div>
+        <div class="art-body">Служебный график:
+Будни: с 09:00 до 21:00.
+Выходные и Праздничные дни: с 09:00 до 20:00.
+Обеденный перерыв: с 14:00 до 15:00.</div>
+      </div>
+      <div class="article" data-search="4.4 краткосрочный отдых 1 час гардероб комната отдыха">
+        <div class="art-head"><span class="art-num">4.4</span><span class="art-title">Краткосрочный отдых</span></div>
+        <div class="art-body">Сотрудникам разрешено осуществлять краткосрочный отдых (не более 1 часа) на территории ИК-7 строго в специально отведенных местах: гардероб, комната отдыха.</div>
+      </div>
+      <div class="article" data-search="4.5 окончание служебного дня покидать территорию график">
+        <div class="art-head"><span class="art-num">4.5</span><span class="art-title">Окончание служебного дня</span></div>
+        <div class="art-body">После окончания служебного дня сотрудникам разрешено покидать территорию учреждения с соблюдением графика.</div>
+      </div>
+      <div class="article" data-search="4.6 отпуск 7 дней 1 раз в месяц полковник генерал-майор жизненные обстоятельства">
+        <div class="art-head"><span class="art-num">4.6</span><span class="art-title">Отпуск</span></div>
+        <div class="art-body">Все сотрудники имеют право на гарантированный отпуск продолжительностью не более 7 дней и не более 1 раза в месяц по усмотрению руководства. В случае серьезных жизненных обстоятельств отпуск может быть оформлен на любое количество дней с одобрения Полковника/Генерал-майора.</div>
+      </div>
+      <div class="article" data-search="4.7 отгулы 60 минут сутки заявление начальник заместитель начальника уфсин">
+        <div class="art-head"><span class="art-num">4.7</span><span class="art-title">Отгулы</span></div>
+        <div class="art-body">Всем сотрудникам разрешены отгулы общим сроком не более 60 мин в сутки, в количестве не более одного. Заявление подается по внутренним каналам связи и должно быть одобрено прямым начальством или Начальником / Заместителем начальника УФСИН.</div>
+      </div>
+
+      <div class="chapter" id="u-gl5">Глава V. Положение о взысканиях и поощрениях</div>
+      <div class="article" data-search="5.1 дисциплинарное взыскание обстоятельства личность звание должность смягчающие отягчающие 48 часов одно взыскание">
+        <div class="art-head"><span class="art-num">5.1</span><span class="art-title">Назначение взыскания</span></div>
+        <div class="art-body">При назначении дисциплинарного взыскания учитываются обстоятельства совершения проступка, личность виновного, его звание, должность, а также смягчающие и отягчающие обстоятельства. Дисциплинарное взыскание применяется не позднее 48 часов с момента совершения проступка. За каждый проступок применяется только одно взыскание. Не допускается применение взысканий, не предусмотренных федеральными законами.</div>
+      </div>
+      <div class="article" data-search="5.2 виды дисциплинарных взысканий предупреждение выговор увольнение личное дело 3 предупреждения 3 выговора">
+        <div class="art-head"><span class="art-num">5.2</span><span class="art-title">Виды взысканий</span></div>
+        <div class="art-body">Виды дисциплинарных взысканий:
+Предупреждение — не заносится в личное дело сотрудника.
+Выговор — заносится в личное дело.
+Увольнение — крайняя мера, применяется при грубых нарушениях или накоплении выговоров.
+Примечание: 3 предупреждения приравниваются к 1 выговору; 3 выговора ведут к расторжению трудового договора (увольнению).</div>
+      </div>
+      <div class="article" data-search="5.3 вынести взыскания начальник фсин заместители начальник ОБП подразделения сотрудники ОБП доказательства старший состав">
+        <div class="art-head"><span class="art-num">5.3</span><span class="art-title">Кто может вынести взыскание</span></div>
+        <div class="art-body">Вынести дисциплинарные взыскания могут:
+а) Начальник ФСИН;
+б) Заместители Начальника ФСИН;
+в) Начальник ОБП и его заместители;
+г) Начальники и заместители подразделений сотрудникам своих подразделений;
+д) Сотрудники ОБП путем передачи доказательств старшему составу.</div>
+      </div>
+      <div class="article" data-search="5.4 виды поощрений благодарность почетная грамота ценные подарки денежные премии ведомственные награды внеочередное звание досрочное снятие выговора">
+        <div class="art-head"><span class="art-num">5.4</span><span class="art-title">Виды поощрений</span></div>
+        <div class="art-body">Виды поощрений:
+а) Объявление благодарности;
+б) Награждение почетной грамотой;
+в) Вручение ценных подарков или денежных премий;
+г) Представление к ведомственным наградам;
+д) Присвоение внеочередного специального звания;
+е) Поощрение за отличную службу (досрочное снятие выговора).</div>
+      </div>
+      <div class="article" data-search="5.5 запросить отработку выговора дополнительные обязанности общественно полезные работы">
+        <div class="art-head"><span class="art-num">5.5</span><span class="art-title">Отработка выговора</span></div>
+        <div class="art-body">Сотрудник может запросить отработку выговора путем выполнения дополнительных служебных обязанностей или общественно полезных работ.</div>
+      </div>
+
+      <div class="chapter" id="u-gl6">Глава VI. Положение о подразделениях и отделах</div>
+      <div class="article" data-search="6.1 отдел борьбы с правонарушениями ОБП оперативно-режимный отдел собственной безопасности коррупция побеги розыск нелегальные предметы приказы любому сотруднику">
+        <div class="art-head"><span class="art-num">6.1</span><span class="art-title">ОБП</span></div>
+        <div class="art-body">Отдел борьбы с правонарушениями (ОБП). Осуществляет функции оперативно-режимного отдела и отдела собственной безопасности. Предназначен для предупреждения, выявления и расследования правонарушений, а также обеспечения режима содержания.
+Задачи: проведение служебных проверок; выявление фактов коррупции; контроль за соблюдением требований безопасности; контроль за образом жизни осужденных; предотвращение побегов; розыск осужденных, совершивших побег; участие в режимных мероприятиях; выявление проноса нелегальных предметов.
+Полномочия: сотрудники ОБП уполномочены отдавать приказы любому сотруднику ФСИН, если они не противоречат законодательству (запрещено отдавать приказы начальникам и заместителям структурных подразделений).</div>
+      </div>
+      <div class="article" data-search="6.2 отдел быстрого реагирования ОБР охрана надзор специальное назначение караульная служба побег заложники конвои">
+        <div class="art-head"><span class="art-num">6.2</span><span class="art-title">ОБР</span></div>
+        <div class="art-body">Отдел быстрого реагирования (ОБР). Осуществляет функции отдела охраны и надзора и отряда специального назначения. Предназначен для обеспечения физической безопасности учреждения, охраны периметра и пресечения противоправных действий.
+Задачи: организация караульной службы; контроль доступа на территорию; предотвращение попыток побега; задержание опасных преступников; борьба с беспорядками; освобождение заложников; защита высшего начальствующего состава ФСИН; сопровождение конвоев.</div>
+      </div>
+      <div class="article" data-search="6.3 медико-профилактический центр МПЦ санитарная часть медицинское обеспечение эпидемиологическое">
+        <div class="art-head"><span class="art-num">6.3</span><span class="art-title">МПЦ</span></div>
+        <div class="art-body">Медико-профилактический центр (МПЦ). Осуществляет функции санитарной части. Предназначен для медицинского и санитарно-эпидемиологического обеспечения на территории исправительного учреждения.
+Задачи: обеспечение санитарно-эпидемиологического благополучия; профилактика инфекционных заболеваний; оказание медицинской помощи лицам, отбывающим наказание, и сотрудникам уголовно-исполнительной системы.</div>
+      </div>
+      <div class="article" data-search="6.4 группа обеспечения архивной работы ГоАр отдел кадров обучение личные дела приказы">
+        <div class="art-head"><span class="art-num">6.4</span><span class="art-title">ГоАр</span></div>
+        <div class="art-body">Группа обеспечения Архивной работы (ГоАр). Осуществляет функции отдела кадров. Предназначена для управления человеческими ресурсами и ведения служебного документооборота.
+Задачи: подбор и прием новых сотрудников; организация обучения (учебный корпус); ведение личных дел; оформление приказов; консультирование сотрудников по вопросам службы.</div>
+      </div>
+
+      <div class="chapter" id="u-gl7">Глава VII. Положение о должностях</div>
+      <div class="article" data-search="7.1 иерархия полномочия приоритет приказов начальник уфсин командир отдела оперативное мероприятие старший по званию">
+        <div class="art-head"><span class="art-num">7.1</span><span class="art-title">Приоритет приказов</span></div>
+        <div class="art-body">Все сотрудники УФСИН подчиняются строгой внутренней иерархии, определяющей полномочия относительно друг друга. Приоритет выполнения приказов:
+— выдан начальником УФСИН или его заместителем;
+— выдан командиром/начальником отдела, в котором состоит сотрудник;
+— выдан руководителем оперативного мероприятия вне зависимости от звания;
+— выдан старшим по званию другого отдела.</div>
+      </div>
+      <div class="article" data-search="7.2 иерархия специальных званий высший старший средний младший рядовой генерал полковник подполковник майор капитан лейтенант прапорщик сержант рядовой">
+        <div class="art-head"><span class="art-num">7.2</span><span class="art-title">Иерархия званий</span></div>
+        <div class="art-body">Иерархия специальных званий уголовно-исполнительной системы:
+Высший начальствующий состав:
+Генерал внутренней службы Российской Федерации;
+Генерал-полковник внутренней службы;
+Генерал-лейтенант внутренней службы;
+Генерал-майор внутренней службы;
+Старший начальствующий состав:
+Полковник внутренней службы;
+Подполковник внутренней службы;
+Майор внутренней службы;
+Средний начальствующий состав:
+Капитан внутренней службы;
+Старший лейтенант внутренней службы;
+Лейтенант внутренней службы;
+Младший лейтенант внутренней службы;
+Младший начальствующий состав:
+Старший прапорщик внутренней службы;
+Прапорщик внутренней службы;
+Старшина внутренней службы;
+Старший сержант внутренней службы;
+Сержант внутренней службы;
+Младший сержант внутренней службы;
+Рядовой состав:
+Рядовой внутренней службы.</div>
+      </div>
+
+      <div class="chapter" id="u-gl8">Глава VIII. Заключительные положения</div>
+      <div class="article" data-search="8.1 вступает в силу утверждение">
+        <div class="art-head"><span class="art-num">8.1</span><span class="art-title">Вступление в силу</span></div>
+        <div class="art-body">Настоящий Устав вступает в силу со дня его утверждения и применяется к отношениям, возникшим после введения его в действие.</div>
+      </div>
+    </section>
+
+    <!-- ================= КоАП ================= -->
+    <section class="doc" id="doc-koap">
+      <div class="doc-title">⚖️ Кодекс об административных правонарушениях <span class="pill">Полный текст</span></div>
+
+      <div class="chapter" id="k-gl5">Глава 5. Права граждан</div>
+      <div class="article" data-search="5.1 нарушение порядка рассмотрения обращений граждан штраф 20.000 50.000">
+        <div class="art-head"><span class="art-num">5.1</span><span class="art-title">Нарушение порядка рассмотрения обращений граждан</span></div>
+        <div class="art-body">Нарушение установленного законодательством Российской Федерации порядка рассмотрения обращений граждан, объединений граждан, в том числе юридических лиц, должностными лицами государственных организаций и иных организаций, на которые возложено осуществление публично значимых функций.</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 20 000 – 50 000 ₽</span></div>
+      </div>
+      <div class="article" data-search="5.2 оскорбление унижение чести достоинства штраф 10.000 20.000">
+        <div class="art-head"><span class="art-num">5.2</span><span class="art-title">Оскорбление</span></div>
+        <div class="art-body">Оскорбление, унижение чести и достоинства другого лица, выраженное в неприличной или иной противоречащей общепринятым нормам морали и нравственности форме.</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 10 000 – 20 000 ₽</span></div>
+      </div>
+      <div class="article" data-search="5.3 дискриминация права свободы пол раса национальность язык происхождение имущественное семейное социальное должностное положение возраст место жительства религия убеждения штраф 5.000 15.000">
+        <div class="art-head"><span class="art-num">5.3</span><span class="art-title">Дискриминация</span></div>
+        <div class="art-body">Дискриминация, то есть нарушение прав, свобод и законных интересов человека и гражданина в зависимости от его пола, расы, цвета кожи, национальности, языка, происхождения, имущественного, семейного, социального и должностного положения, возраста, места жительства, отношения к религии, убеждений, принадлежности или непринадлежности к общественным объединениям или каким-либо социальным группам.</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 5 000 – 15 000 ₽</span></div>
+      </div>
+      <div class="article" data-search="5.5 нарушение режима тайного голосования арест 14 суток СПРП ★★">
+        <div class="art-head"><span class="art-num">5.5</span><span class="art-title">Нарушение режима тайного голосования</span></div>
+        <div class="art-body">Нарушение режима тайного голосования, разглашение лица или ответа, за который был отдан голос на выборах, референдуме.</div>
+        <div class="badges"><span class="badge b-term">Арест: 14 суток</span><span class="badge b-prp">СПРП ★★</span></div>
+      </div>
+      <div class="article" data-search="5.6 агитация в день голосования арест 14 суток СПРП ★★">
+        <div class="art-head"><span class="art-num">5.6</span><span class="art-title">Агитация в день голосования</span></div>
+        <div class="art-body">Агитация в день голосования на выборах, референдуме.</div>
+        <div class="badges"><span class="badge b-term">Арест: 14 суток</span><span class="badge b-prp">СПРП ★★</span></div>
+      </div>
+
+      <div class="chapter" id="k-gl6">Глава 6. Здоровье, медицинская помощь</div>
+      <div class="article" data-search="6.1 воспрепятствование оказанию медицинской помощи штраф 10.000 15.000">
+        <div class="art-head"><span class="art-num">6.1</span><span class="art-title">Воспрепятствование оказанию медицинской помощи</span></div>
+        <div class="art-body">Воспрепятствование в какой бы то ни было форме законной деятельности медицинского работника по оказанию медицинской помощи, если это действие не содержит признаков уголовно наказуемого деяния.</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 10 000 – 15 000 ₽</span></div>
+      </div>
+      <div class="article" data-search="6.2 нарушение территориального принципа обращения за медицинской помощью штраф 50.000 90.000">
+        <div class="art-head"><span class="art-num">6.2</span><span class="art-title">Нарушение территориального принципа обращения за медпомощью</span></div>
+        <div class="art-body">Неоднократное нарушение территориального принципа обращения за плановой формой медицинской помощи, установленного законодательством Российской Федерации сотрудниками учреждений здравоохранения.</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 50 000 – 90 000 ₽</span></div>
+      </div>
+      <div class="article" data-search="6.3 неоказание медицинской помощи штраф 10.000 15.000">
+        <div class="art-head"><span class="art-num">6.3</span><span class="art-title">Неоказание медицинской помощи</span></div>
+        <div class="art-body">Неоказание медицинской помощи больному без уважительных причин лицом, обязанным её оказывать в соответствии с законом или со специальным правилом, если это повлекло причинение вреда здоровью больного и не содержит признаки уголовного преступления.</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 10 000 – 15 000 ₽</span></div>
+      </div>
+      <div class="article" data-search="6.4 отсутствие медицинской книжки штраф 15.000 25.000">
+        <div class="art-head"><span class="art-num">6.4</span><span class="art-title">Отсутствие медицинской книжки</span></div>
+        <div class="art-body">Отсутствие действующей медицинской книжки у сотрудника государственной организации, который в порядке, предусмотренном законодательством Российской Федерации, обязан следить за своим здоровьем.</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 15 000 – 25 000 ₽</span></div>
+      </div>
+      <div class="article" data-search="6.5 непрохождение медицинской проверки штраф 50.000 90.000">
+        <div class="art-head"><span class="art-num">6.5</span><span class="art-title">Непрохождение медицинской проверки организацией</span></div>
+        <div class="art-body">Непрохождение государственной организацией медицинской проверки или отказ от прохождения медицинской проверки.</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 50 000 – 90 000 ₽</span></div>
+      </div>
+      <div class="article" data-search="6.6 уклонение от оплаты медицинских услуг штраф 20.000 арест 14 суток СПРП ★★">
+        <div class="art-head"><span class="art-num">6.6</span><span class="art-title">Уклонение от оплаты медицинских услуг</span></div>
+        <div class="art-body">Невыполнение пациентом или иным лицом обязательства по расчету за полученную медицинскую услугу, о которой он был проинформирован до её оказания.</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 20 000 ₽</span><span class="badge b-term">Арест: 14 суток</span><span class="badge b-prp">СПРП ★★</span></div>
+      </div>
+
+      <div class="chapter" id="k-gl7">Глава 7. Собственность</div>
+      <div class="article" data-search="7.1 проникновение на частную территорию штраф 10.000 20.000">
+        <div class="art-head"><span class="art-num">7.1</span><span class="art-title">Проникновение на частную территорию</span></div>
+        <div class="art-body">Проникновение на территорию, в помещения частной собственности без разрешения собственника или уполномоченного лица.</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 10 000 – 20 000 ₽</span></div>
+      </div>
+      <div class="article" data-search="7.2 взлом арест 14 суток СПРП ★★">
+        <div class="art-head"><span class="art-num">7.2</span><span class="art-title">Взлом</span></div>
+        <div class="art-body">Взлом, ровно как и попытка взлома, с целью незаконного проникновения в жилище или иной объект частной собственности.</div>
+        <div class="badges"><span class="badge b-term">Арест: 14 суток</span><span class="badge b-prp">СПРП ★★</span></div>
+      </div>
+      <div class="article" data-search="7.3 попытка угона транспортных средств штраф 10.000 20.000 арест 14 суток СПРП ★★">
+        <div class="art-head"><span class="art-num">7.3</span><span class="art-title">Попытка угона транспортных средств</span></div>
+        <div class="art-body">Попытка взлома транспортного средства, с целью хищения или без нее, без заведения двигателя внутреннего сгорания (электродвигателя).</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 10 000 – 20 000 ₽</span><span class="badge b-term">Арест: 14 суток</span><span class="badge b-prp">СПРП ★★</span></div>
+      </div>
+      <div class="article" data-search="7.4 браконьерство штраф 20.000 30.000">
+        <div class="art-head"><span class="art-num">7.4</span><span class="art-title">Браконьерство</span></div>
+        <div class="art-body">Осуществление деятельности по добыче (вылову) водных биоресурсов без соответствующей лицензии.</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 20 000 – 30 000 ₽</span></div>
+      </div>
+      <div class="article" data-search="7.5 нарушение правил рыболовство штраф 15.000 30.000">
+        <div class="art-head"><span class="art-num">7.5</span><span class="art-title">Нарушение правил рыболовства</span></div>
+        <div class="art-body">Превышение нормы вылова рыбы, водных биоресурсов или добычи охотничьих ресурсов, нарушение иных специальных правил, регламентирующих рыболовство и другие виды пользования объектами животного мира.</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 15 000 – 30 000 ₽</span></div>
+      </div>
+
+      <div class="chapter" id="k-gl8">Глава 8. Общественный порядок</div>
+      <div class="article" data-search="8.1 мелкое хулиганство нецензурная лексика приставание нижнее белье повреждение имущества штраф 10.000 30.000 арест 7 суток СПРП ★">
+        <div class="art-head"><span class="art-num">8.1</span><span class="art-title">Мелкое хулиганство</span></div>
+        <div class="art-body">Мелкое хулиганство, нарушение общественного порядка, выражающее явное неуважение к обществу, сопровождающееся нецензурной лексикой в общественных местах, непристойным или оскорбительным приставанием к гражданам, нахождением в общественных местах или на территории организаций, за исключением водоемов, бассейнов, спортзалов, в нижнем белье, уничтожением или повреждением чужого имущества.</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 10 000 – 30 000 ₽</span><span class="badge b-term">Арест: 7 суток</span><span class="badge b-prp">СПРП ★</span></div>
+      </div>
+      <div class="article" data-search="8.2 побои насильственные действия физическая боль штраф 20.000 30.000 арест 7 суток СПРП ★">
+        <div class="art-head"><span class="art-num">8.2</span><span class="art-title">Побои</span></div>
+        <div class="art-body">Нанесение побоев или совершение иных насильственных действий, причинивших физическую боль, если эти действия не содержат уголовно наказуемого деяния.</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 20 000 – 30 000 ₽</span><span class="badge b-term">Арест: 7 суток</span><span class="badge b-prp">СПРП ★</span></div>
+      </div>
+      <div class="article" data-search="8.3 распитие алкогольной продукции общественные места опьянение штраф 10.000 25.000">
+        <div class="art-head"><span class="art-num">8.3</span><span class="art-title">Распитие алкогольной продукции в общественных местах</span></div>
+        <div class="art-body">Потребление (распитие) алкогольной продукции в общественных местах, а также появление на улицах, стадионах, в скверах, парках, в транспортном средстве общего пользования, в других общественных местах в состоянии алкогольного или наркотического опьянения, оскорбляющем человеческое достоинство и общественную нравственность.</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 10 000 – 25 000 ₽</span></div>
+      </div>
+      <div class="article" data-search="8.4 попрошайничество бродяжничество штраф 5.000 15.000">
+        <div class="art-head"><span class="art-num">8.4</span><span class="art-title">Занятие попрошайничеством</span></div>
+        <div class="art-body">Занятие бродяжничеством или попрошайничеством на улицах, стадионах, в скверах, парках, в транспортном средстве общего пользования, в других общественных местах.</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 5 000 – 15 000 ₽</span></div>
+      </div>
+      <div class="article" data-search="8.5 заведомо ложный вызов полиция скорая штраф 10.000 20.000">
+        <div class="art-head"><span class="art-num">8.5</span><span class="art-title">Заведомо ложный вызов</span></div>
+        <div class="art-body">Заведомо ложный вызов полиции, скорой медицинской помощи или иных специализированных служб.</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 10 000 – 20 000 ₽</span></div>
+      </div>
+      <div class="article" data-search="8.6 несанкционированный митинг штраф 20.000 30.000 арест 14 суток СПРП ★★">
+        <div class="art-head"><span class="art-num">8.6</span><span class="art-title">Несанкционированный митинг</span></div>
+        <div class="art-body">Организация, участие и(или) призыв к несанкционированному несогласованному митингу, повлекший нарушение общественного порядка, нарушение функционирования и сохранности объектов жизнеобеспечения, создание помех в движении пешеходов и(или) транспортных средств.</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 20 000 – 30 000 ₽</span><span class="badge b-term">Арест: 14 суток</span><span class="badge b-prp">СПРП ★★</span></div>
+      </div>
+      <div class="article" data-search="8.7 неповиновение законному распоряжению правоохранительные органы штраф 15.000 30.000 арест 14 суток СПРП ★★">
+        <div class="art-head"><span class="art-num">8.7</span><span class="art-title">Неповиновение законному распоряжению</span></div>
+        <div class="art-body">Неповиновение законному распоряжению или требованию сотрудника правоохранительных органов или военнослужащего (перед применением меры наказания сотрудник должен быть уверен, что выдвинутое требование было верно воспринято именно тем лицом, к которому оно адресовалось), а равно воспрепятствование исполнению ими служебных обязанностей.</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 15 000 – 30 000 ₽</span><span class="badge b-term">Арест: 14 суток</span><span class="badge b-prp">СПРП ★★</span></div>
+      </div>
+      <div class="article" data-search="8.8 клевета заведомо ложные сведения честь достоинство репутация штраф 10.000 20.000">
+        <div class="art-head"><span class="art-num">8.8</span><span class="art-title">Клевета</span></div>
+        <div class="art-body">Клевета, то есть распространение заведомо ложных сведений, порочащих честь и достоинство другого лица или подрывающих его репутацию.</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 10 000 – 20 000 ₽</span></div>
+      </div>
+      <div class="article" data-search="8.9 невыполнение требований прокурора следователя дознавателя штраф 10.000 20.000 десять окладов">
+        <div class="art-head"><span class="art-num">8.9</span><span class="art-title">Невыполнение требований прокурора, следователя, дознавателя</span></div>
+        <div class="art-body">Невыполнение законных требований прокурора, следователя, дознавателя или должностного лица, осуществляющего производство по делу об административном правонарушении.</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 10 000 – 20 000 ₽ / 10 окладов</span></div>
+      </div>
+      <div class="article" data-search="8.10 нарушение законодательства об исполнительном производстве штраф 10.000 20.000">
+        <div class="art-head"><span class="art-num">8.10</span><span class="art-title">Нарушение законодательства об исполнительном производстве</span></div>
+        <div class="art-body">Нарушение должником законодательства об исполнительном производстве, выразившееся в невыполнении законных требований судьи, представлении недостоверных сведений, составляющих интерес для суда, сведений о своих правах на имущество, несообщении об иных доходах или месте жительства.</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 10 000 – 20 000 ₽ / 10 окладов</span></div>
+      </div>
+      <div class="article" data-search="8.11 нарушение правил поведения на охраняемых территориях штраф 10.000 20.000">
+        <div class="art-head"><span class="art-num">8.11</span><span class="art-title">Нарушение правил на охраняемых территориях</span></div>
+        <div class="art-body">Нарушение установленных и принятых в порядке, предусмотренном законодательством о закрытых и охраняемых территориях, правил поведения на охраняемых территориях.</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 10 000 – 20 000 ₽</span></div>
+      </div>
+      <div class="article" data-search="8.12 ношение масок скрывающих лицо штраф 10.000 15.000">
+        <div class="art-head"><span class="art-num">8.12</span><span class="art-title">Ношение масок, скрывающих лицо</span></div>
+        <div class="art-body">Ношение масок в общественном месте, скрывающем лицо, кроме медицинских масок, купленных в специализированном магазине, а также за исключением ношения декоративных масок на мероприятиях, санкционированных Правительством Российской Федерации.</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 10 000 – 15 000 ₽</span></div>
+      </div>
+      <div class="article" data-search="8.13 открытое ношение холодного оружия штраф 15.000 20.000">
+        <div class="art-head"><span class="art-num">8.13</span><span class="art-title">Открытое ношение холодного оружия</span></div>
+        <div class="art-body">Нарушение требований законодательства об оружии, выражающееся в открытом ношении холодного оружия в общественных местах.</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 15 000 – 20 000 ₽</span></div>
+      </div>
+      <div class="article" data-search="8.14 курение табака кальян общественное место штраф 5.000 10.000">
+        <div class="art-head"><span class="art-num">8.14</span><span class="art-title">Курение в общественном месте</span></div>
+        <div class="art-body">Курение табака, потребление никотинсодержащей продукции или использование кальянов в общественных местах.</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 5 000 – 10 000 ₽</span></div>
+      </div>
+      <div class="article" data-search="8.15 чрезвычайное военное положение контртеррористическая операция комендантский час штраф 10.000 30.000 арест 7 суток СПРП ★">
+        <div class="art-head"><span class="art-num">8.15</span><span class="art-title">Нарушение режима ЧП, ВП, КТО, комендантского часа</span></div>
+        <div class="art-body">Нарушение требований режима чрезвычайного и военного положения, контртеррористической операции и комендантского часа, установленных Федеральным конституционным законом №28-ФЗ «О чрезвычайном и военном положениях, режиме контртеррористической операции».</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 10 000 – 30 000 ₽</span><span class="badge b-term">Арест: 7 суток</span><span class="badge b-prp">СПРП ★</span></div>
+      </div>
+
+      <div class="chapter" id="k-gl9">Глава 9. Дорожное движение</div>
+      <div class="article" data-search="9.1.1 управление транспортным средством без документов штраф 30.000">
+        <div class="art-head"><span class="art-num">9.1.1</span><span class="art-title">Управление ТС без документов при себе</span></div>
+        <div class="art-body">Управление транспортным средством водителем, не имеющим при себе документов, предусмотренных правилами дорожного движения (см. статья 2.1 ПДД).</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 30 000 ₽</span></div>
+      </div>
+      <div class="article" data-search="9.1.2 отсутствие водительского удостоверения штраф 30.000">
+        <div class="art-head"><span class="art-num">9.1.2</span><span class="art-title">Управление ТС без водительского удостоверения</span></div>
+        <div class="art-body">Управление транспортным средством водителем в отсутствие действующего водительского удостоверения (см. статья 2.1 ПДД).</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 30 000 ₽</span></div>
+      </div>
+      <div class="article" data-search="9.2 непредоставление документов ГИБДД штраф 15.000 лишение права управления">
+        <div class="art-head"><span class="art-num">9.2</span><span class="art-title">Непредоставление документов по требованию ГИБДД</span></div>
+        <div class="art-body">Непредоставление по требованию сотрудника Государственной инспекции безопасности дорожного движения документов, предусмотренных правилами дорожного движения (см. статья 2.1 ПДД).</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 15 000 ₽</span><span class="badge b-warn">Либо лишение права управления</span></div>
+      </div>
+      <div class="article" data-search="9.3 незарегистрированное транспортное средство без номеров штраф 30.000 лишение">
+        <div class="art-head"><span class="art-num">9.3</span><span class="art-title">Управление ТС, не зарегистрированным в установленном порядке</span></div>
+        <div class="art-body">Управление транспортным средством, не зарегистрированным в установленном порядке, а также без государственных регистрационных знаков, либо со знаками, видоизменёнными или оборудованными с применением устройств или материалов, препятствующих идентификации, при том, что прошло более 3 суток с момента приобретения транспортного средства (см. статья 13.2 ПДД).</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 30 000 ₽</span><span class="badge b-warn">Либо лишение права управления</span></div>
+      </div>
+      <div class="article" data-search="9.4 тонировка более 75% штраф 15.000">
+        <div class="art-head"><span class="art-num">9.4</span><span class="art-title">Тонировка</span></div>
+        <div class="art-body">Управление транспортным средством, на котором установлена тонировка более 75% на боковых передних и лобовом стеклах (в том числе запрещены цветные пленки) (см. статья 13.4 ПДД).</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 15 000 ₽</span></div>
+      </div>
+      <div class="article" data-search="9.5 техническая неисправность штраф 30.000">
+        <div class="art-head"><span class="art-num">9.5</span><span class="art-title">Управление ТС при наличии технической неисправности</span></div>
+        <div class="art-body">Управление транспортным средством при наличии технической неисправности или при наличии условия, когда оно запрещено, или при внесении не предусмотренных конструкцией изменений (см. главу 13 ПДД).</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 30 000 ₽</span></div>
+      </div>
+      <div class="article" data-search="9.6 нарушение ПДД пешеходами велосипедистами штраф 35.000">
+        <div class="art-head"><span class="art-num">9.6</span><span class="art-title">Нарушение ПДД пешеходами и велосипедистами</span></div>
+        <div class="art-body">Нарушение правил дорожного движения пешеходами и велосипедистами (см. главу IV ПДД).</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 35 000 ₽</span></div>
+      </div>
+      <div class="article" data-search="9.7 посадка высадка пассажиров со стороны проезжей части штраф 10.000">
+        <div class="art-head"><span class="art-num">9.7</span><span class="art-title">Посадка/высадка пассажиров со стороны проезжей части</span></div>
+        <div class="art-body">Посадка или высадка пассажиров со стороны проезжей части в нарушение правил дорожного движения (см. статья 2.7 ПДД).</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 10 000 ₽</span></div>
+      </div>
+      <div class="article" data-search="9.8 игнорирование требования об остановке штраф 30.000 арест 14 суток СПРП ★★">
+        <div class="art-head"><span class="art-num">9.8</span><span class="art-title">Игнорирование требования об остановке</span></div>
+        <div class="art-body">Игнорирование водителем требования об остановке (см. статья 5.4 ПДД).</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 30 000 ₽</span><span class="badge b-term">Арест: 14 суток</span><span class="badge b-prp">СПРП ★★</span></div>
+      </div>
+      <div class="article" data-search="9.9 несоблюдение требований дорожных знаков разметки штраф 25.000">
+        <div class="art-head"><span class="art-num">9.9</span><span class="art-title">Несоблюдение требований знаков или разметки</span></div>
+        <div class="art-body">Несоблюдение требований, предписанных дорожными знаками или разметкой проезжей части дороги (см. статья 1.3 ПДД).</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 25 000 ₽</span></div>
+      </div>
+      <div class="article" data-search="9.10 использование приоритета маячки звуковой сигнал штраф 50.000">
+        <div class="art-head"><span class="art-num">9.10</span><span class="art-title">Использование приоритета с маячками без безопасности</span></div>
+        <div class="art-body">Использование приоритета в движении при следовании с включенными маячками и звуковым сигналом, не убедившись в безопасности данного манёвра (см. статья 3.1 ПДД).</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 50 000 ₽</span></div>
+      </div>
+      <div class="article" data-search="9.11 нарушение правил использования аварийных сигналов штраф 10.000">
+        <div class="art-head"><span class="art-num">9.11</span><span class="art-title">Нарушение правил использования аварийных сигналов</span></div>
+        <div class="art-body">Нарушение правил использования аварийных сигналов (см. статья 3.7 ПДД).</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 10 000 ₽</span></div>
+      </div>
+      <div class="article" data-search="9.12 управление ТС с выключенными фарами штраф 10.000">
+        <div class="art-head"><span class="art-num">9.12</span><span class="art-title">Управление ТС с выключенными фарами</span></div>
+        <div class="art-body">Управление транспортным средством с выключенными фарами (см. статья 3.9 ПДД).</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 10 000 ₽</span></div>
+      </div>
+      <div class="article" data-search="9.13 звуковой сигнал нарушение штраф 5.000">
+        <div class="art-head"><span class="art-num">9.13</span><span class="art-title">Использование звукового сигнала в нарушение ПДД</span></div>
+        <div class="art-body">Использование звукового сигнала в нарушение правил дорожного движения (см. статья 3.8 ПДД).</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 5 000 ₽</span></div>
+      </div>
+      <div class="article" data-search="9.14 проезд на красный сигнал светофора штраф 25.000">
+        <div class="art-head"><span class="art-num">9.14</span><span class="art-title">Проезд на красный сигнал светофора</span></div>
+        <div class="art-body">Проезд на красный сигнал светофора, а равно проезд на запрещающий жест регулировщика, или на жёлтый сигнал светофора при возможности совершить остановку, не повлекшую создание опасности для движения иных участников дорожного движения (см. статья 5.2 ПДД).</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 25 000 ₽</span></div>
+      </div>
+      <div class="article" data-search="9.15 стоп-линия штраф 35.000">
+        <div class="art-head"><span class="art-num">9.15</span><span class="art-title">Невыполнение требования об остановке перед стоп-линией</span></div>
+        <div class="art-body">Невыполнение требования Правил дорожного движения об остановке перед стоп-линией, обозначенной дорожными знаками или разметкой проезжей части дороги, при запрещающем сигнале светофора или запрещающем жесте регулировщика (см. статья 5.5 ПДД).</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 35 000 ₽</span></div>
+      </div>
+      <div class="article" data-search="9.16 поворотники световые указатели штраф 10.000">
+        <div class="art-head"><span class="art-num">9.16</span><span class="art-title">Неиспользование поворотников</span></div>
+        <div class="art-body">Начало движения, перестроение, поворот (разворот) и остановка без использования сигнала световыми указателями поворота соответствующего направления (см. статья 6.1 ПДД).</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 10 000 ₽</span></div>
+      </div>
+      <div class="article" data-search="9.17 непредоставление преимущества при перестроении штраф 30.000">
+        <div class="art-head"><span class="art-num">9.17</span><span class="art-title">Непредоставление преимущества при перестроении</span></div>
+        <div class="art-body">Непредоставление при перестроении преимущества транспортному средству, движущемуся попутно без изменения направления движения, а равно непредоставление при одновременном перестроении преимущества транспортному средству, движущемуся справа (см. статья 6.4 ПДД).</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 30 000 ₽</span></div>
+      </div>
+      <div class="article" data-search="9.18 поворот из полосы не предназначенной штраф 15.000">
+        <div class="art-head"><span class="art-num">9.18</span><span class="art-title">Поворот из непредназначенной полосы</span></div>
+        <div class="art-body">Поворот направо, налево или разворот из полосы движения, не предназначенной для данного манёвра (см. статья 6.5 ПДД).</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 15 000 ₽</span></div>
+      </div>
+      <div class="article" data-search="9.19 поворот в нарушение ПДД штраф 15.000">
+        <div class="art-head"><span class="art-num">9.19</span><span class="art-title">Поворот в нарушение ПДД</span></div>
+        <div class="art-body">Поворот направо, налево, разворот или движение задним ходом в нарушение требований правил дорожного движения, дорожных знаков или дорожной разметки (см. статьи 6.6, 6.7, 6.8 ПДД).</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 15 000 ₽</span></div>
+      </div>
+      <div class="article" data-search="9.20 движение по полосе встречного движения штраф 30.000 лишение">
+        <div class="art-head"><span class="art-num">9.20</span><span class="art-title">Движение по полосе встречного движения</span></div>
+        <div class="art-body">Движение по полосе, предназначенной для встречного движения, в нарушение правил дорожного движения (см. статья 7.1 ПДД).</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 30 000 ₽</span><span class="badge b-warn">Либо лишение права управления</span></div>
+      </div>
+      <div class="article" data-search="9.21 повреждение дорог штраф 5.000 20.000">
+        <div class="art-head"><span class="art-num">9.21</span><span class="art-title">Повреждение дорог, переездов, сооружений</span></div>
+        <div class="art-body">Повреждение дорог, железнодорожных переездов или других дорожных сооружений, в том числе столбов, ограждений, заборов либо технических средств организации дорожного движения, которое создает угрозу безопасности дорожного движения, а равно умышленное создание помех в дорожном движении.</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 5 000 – 20 000 ₽</span></div>
+      </div>
+      <div class="article" data-search="9.22 выезд на полосу встречного движения штраф 20.000">
+        <div class="art-head"><span class="art-num">9.22</span><span class="art-title">Выезд на полосу встречного движения</span></div>
+        <div class="art-body">Выезд на полосу, предназначенную для встречного движения, в нарушение правил дорожного движения (см. статья 7.2 ПДД).</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 20 000 ₽</span></div>
+      </div>
+      <div class="article" data-search="9.23 движение по левым полосам при свободных правых штраф 5.000">
+        <div class="art-head"><span class="art-num">9.23</span><span class="art-title">Движение по левым полосам при свободных правых</span></div>
+        <div class="art-body">Движение вне населенных пунктов по левым полосам движения при свободных правых (см. статья 7.4 ПДД).</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 5 000 ₽</span></div>
+      </div>
+      <div class="article" data-search="9.24 движение по прерывистым линиям разметки штраф 5.000">
+        <div class="art-head"><span class="art-num">9.24</span><span class="art-title">Движение по прерывистым линиям разметки</span></div>
+        <div class="art-body">Движение по прерывистым линиям разметки в нарушение правил дорожного движения (см. статья 7.5 ПДД).</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 5 000 ₽</span></div>
+      </div>
+      <div class="article" data-search="9.25 движение по разделительным полосам обочинам тротуарам штраф 5.000">
+        <div class="art-head"><span class="art-num">9.25</span><span class="art-title">Движение по разделительным полосам и обочинам</span></div>
+        <div class="art-body">Движение по разделительным полосам и обочинам, тротуарам и пешеходным дорожкам или пересечение организованной транспортной или пешей колонны либо занятие места в ней (см. статья 7.7 ПДД).</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 5 000 ₽</span></div>
+      </div>
+      <div class="article" data-search="9.26 несоблюдение дистанции интервала штраф 5.000">
+        <div class="art-head"><span class="art-num">9.26</span><span class="art-title">Несоблюдение дистанции и интервала</span></div>
+        <div class="art-body">Несоблюдение дистанции до впереди идущего транспортного средства, а также бокового интервала между движущимися транспортными средствами (см. статья 7.8 ПДД).</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 5 000 ₽</span></div>
+      </div>
+      <div class="article" data-search="9.27 обгон ТС с маячком штраф 40.000">
+        <div class="art-head"><span class="art-num">9.27</span><span class="art-title">Обгон ТС с маячком и звуковым сигналом</span></div>
+        <div class="art-body">Обгон транспортного средства, имеющего нанесенные на наружные поверхности специальные цветографические схемы с включенными проблесковым маячком синего и(или) красного цветов и специальным звуковым сигналом, а также сопровождаемого им транспортного средства (см. статья 3.2 ПДД).</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 40 000 ₽</span></div>
+      </div>
+      <div class="article" data-search="9.28 обгон когда запрещён штраф 10.000">
+        <div class="art-head"><span class="art-num">9.28</span><span class="art-title">Обгон в случаях, когда манёвр запрещён</span></div>
+        <div class="art-body">Обгон транспортных средств в случаях, когда данный манёвр запрещён (см. статья 9.4 ПДД).</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 10 000 ₽</span></div>
+      </div>
+      <div class="article" data-search="9.29 препятствование обгону штраф 10.000">
+        <div class="art-head"><span class="art-num">9.29</span><span class="art-title">Препятствование обгону</span></div>
+        <div class="art-body">Препятствование обгону (см. статья 9.3 ПДД).</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 10 000 ₽</span></div>
+      </div>
+      <div class="article" data-search="9.30 остановка стоянка на пешеходном переходе штраф 15.000">
+        <div class="art-head"><span class="art-num">9.30</span><span class="art-title">Остановка/стоянка на пешеходном переходе</span></div>
+        <div class="art-body">Остановка или стоянка транспортных средств на пешеходном переходе и ближе 5 метров перед ним, остановка или стоянка транспортных средств на тротуаре (см. статья 10.3 ПДД).</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 15 000 ₽</span></div>
+      </div>
+      <div class="article" data-search="9.31 остановка стоянка маршрутных ТС штраф 10.000">
+        <div class="art-head"><span class="art-num">9.31</span><span class="art-title">Остановка/стоянка в местах остановки маршрутных ТС</span></div>
+        <div class="art-body">Остановка или стоянка транспортных средств в местах остановки маршрутных транспортных средств либо ближе 15 метров от мест остановки маршрутных транспортных средств, за исключением остановки для посадки или высадки пассажиров, вынужденной остановки (см. статья 10.3 ПДД).</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 10 000 ₽</span></div>
+      </div>
+      <div class="article" data-search="9.32 нарушение правил остановки стоянки на проезжей части создание препятствий штраф 30.000">
+        <div class="art-head"><span class="art-num">9.32</span><span class="art-title">Нарушение правил остановки/стоянки, создавшее препятствия</span></div>
+        <div class="art-body">Нарушение правил остановки или стоянки транспортных средств на проезжей части, в тоннелях, повлекшее создание препятствий для движения других транспортных средств (см. глава X ПДД).</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 30 000 ₽</span></div>
+      </div>
+      <div class="article" data-search="9.33 нарушение иных правил остановки стоянки штраф 10.000">
+        <div class="art-head"><span class="art-num">9.33</span><span class="art-title">Нарушение иных правил остановки/стоянки</span></div>
+        <div class="art-body">Нарушение правил остановки или стоянки транспортных средств, за исключением случаев, предусмотренных статьями 9.30, 9.31, 9.32, 9.33 настоящего Кодекса (см. глава X ПДД).</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 10 000 ₽</span></div>
+      </div>
+      <div class="article" data-search="9.34 нарушение правил проезда перекрёстков без опасности штраф 10.000">
+        <div class="art-head"><span class="art-num">9.34</span><span class="art-title">Нарушение правил проезда перекрёстков без опасности</span></div>
+        <div class="art-body">Нарушения правил проезда перекрёстков, не повлекшие опасности другим участникам движения (см. глава XI ПДД).</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 10 000 ₽</span></div>
+      </div>
+      <div class="article" data-search="9.35 нарушение правил проезда перекрёстков с опасностью штраф 15.000">
+        <div class="art-head"><span class="art-num">9.35</span><span class="art-title">Нарушение правил проезда перекрёстков с опасностью</span></div>
+        <div class="art-body">Нарушения правил проезда перекрёстков, повлекшие опасность другим участникам движения (см. глава XI ПДД).</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 15 000 ₽</span></div>
+      </div>
+      <div class="article" data-search="9.36 нарушение правил движения по автомагистрали штраф 10.000">
+        <div class="art-head"><span class="art-num">9.36</span><span class="art-title">Нарушения правил движения по автомагистрали</span></div>
+        <div class="art-body">Движение по автомагистрали транспортных средств, скорость которых по технической характеристике или их состоянию менее 40 км/ч, и(или) движение по автомагистрали грузовых автомобилей далее второй полосы, и(или) движение по автомагистрали задним ходом (см. статья 12.1 ПДД).</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 10 000 ₽</span></div>
+      </div>
+      <div class="article" data-search="9.37 непредоставление преимущества ТС с маячком штраф 20.000">
+        <div class="art-head"><span class="art-num">9.37</span><span class="art-title">Непредоставление преимущества ТС с маячком</span></div>
+        <div class="art-body">Непредоставление преимущества транспортному средству с включенным проблесковым маячком синего цвета и(или) красного цвета и специальным звуковым сигналом (см. статья 3.2 ПДД).</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 20 000 ₽</span></div>
+      </div>
+      <div class="article" data-search="9.38 непредоставление преимущества троллейбусам автобусам штраф 10.000">
+        <div class="art-head"><span class="art-num">9.38</span><span class="art-title">Непредоставление преимущества троллейбусам и автобусам</span></div>
+        <div class="art-body">Непредоставление преимущества троллейбусам и автобусам, начинающим движение от обозначенного места остановки (см. статья 14.7 ПДД).</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 10 000 ₽</span></div>
+      </div>
+      <div class="article" data-search="9.39 непредоставление преимущества ТС на главной дороге штраф 5.000">
+        <div class="art-head"><span class="art-num">9.39</span><span class="art-title">Непредоставление преимущества ТС на главной дороге</span></div>
+        <div class="art-body">Непредоставление преимущества транспортным средствам, движущимся по главной дороге, а равно при выезде с прилегающей территории (см. статьи 6.3, 11.7 ПДД).</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 5 000 ₽</span></div>
+      </div>
+      <div class="article" data-search="9.40 непредоставление преимущества пешеходам велосипедистам штраф 5.000">
+        <div class="art-head"><span class="art-num">9.40</span><span class="art-title">Непредоставление преимущества пешеходам/велосипедистам</span></div>
+        <div class="art-body">Непредоставление преимущества в движении пешеходам и(или) велосипедистам, пересекающим проезжую часть (см. статья 14.1 ПДД).</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 5 000 ₽</span></div>
+      </div>
+      <div class="article" data-search="9.41 скрытие с места ДТП штраф 50.000 лишение">
+        <div class="art-head"><span class="art-num">9.41</span><span class="art-title">Скрытие с места ДТП</span></div>
+        <div class="art-body">Оставление водителем в нарушение правил дорожного движения места дорожно-транспортного происшествия, участником которого он являлся (см. статья 2.6 ПДД).</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 50 000 ₽</span><span class="badge b-warn">Либо лишение права управления</span></div>
+      </div>
+      <div class="article" data-search="9.42 управление ТС в состоянии опьянения штраф 30.000 лишение">
+        <div class="art-head"><span class="art-num">9.42</span><span class="art-title">Управление ТС в состоянии опьянения</span></div>
+        <div class="art-body">Управление транспортным средством в состоянии опьянения или передача управления транспортным средством лицу, находящемуся в состоянии опьянения (см. статья 2.4 ПДД).</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 30 000 ₽</span><span class="badge b-warn">Либо лишение права управления</span></div>
+      </div>
+      <div class="article" data-search="9.43 невыполнение требования о медосвидетельствовании штраф 30.000 лишение">
+        <div class="art-head"><span class="art-num">9.43</span><span class="art-title">Отказ от медосвидетельствования</span></div>
+        <div class="art-body">Невыполнение водителем транспортного средства законного требования уполномоченного должностного лица о прохождении медицинского освидетельствования на состояние опьянения (см. статья 2.3 ПДД).</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 30 000 ₽</span><span class="badge b-warn">Либо лишение права управления</span></div>
+      </div>
+      <div class="article" data-search="9.44 опасное вождение штраф 40.000 лишение">
+        <div class="art-head"><span class="art-num">9.44</span><span class="art-title">Опасное вождение</span></div>
+        <div class="art-body">Опасное вождение (см. статья 1.5 ПДД).</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 40 000 ₽</span><span class="badge b-warn">Либо лишение права управления</span></div>
+      </div>
+      <div class="article" data-search="9.45.1 превышение скорости не более 20 км/ч штраф 5.000">
+        <div class="art-head"><span class="art-num">9.45.1</span><span class="art-title">Превышение скорости (не более 20 км/ч)</span></div>
+        <div class="art-body">Превышение установленной скорости движения транспортного средства на величину не более 20 километров в час (см. статья 8.1 ПДД).</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 5 000 ₽</span></div>
+      </div>
+      <div class="article" data-search="9.45.2 превышение скорости более 20 но не более 40 км/ч штраф 10.000">
+        <div class="art-head"><span class="art-num">9.45.2</span><span class="art-title">Превышение скорости (20–40 км/ч)</span></div>
+        <div class="art-body">Превышение установленной скорости движения транспортного средства на величину более 20, но не более 40 километров в час (см. статья 8.1 ПДД).</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 10 000 ₽</span></div>
+      </div>
+      <div class="article" data-search="9.45.3 превышение скорости более 40 но не более 80 км/ч штраф 15.000">
+        <div class="art-head"><span class="art-num">9.45.3</span><span class="art-title">Превышение скорости (40–80 км/ч)</span></div>
+        <div class="art-body">Превышение установленной скорости движения транспортного средства на величину более 40, но не более 80 километров в час (см. статья 8.1 ПДД).</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 15 000 ₽</span></div>
+      </div>
+      <div class="article" data-search="9.45.4 превышение скорости более 80 км/ч штраф 25.000 лишение">
+        <div class="art-head"><span class="art-num">9.45.4</span><span class="art-title">Превышение скорости (более 80 км/ч)</span></div>
+        <div class="art-body">Превышение установленной скорости движения транспортного средства на величину более 80 километров в час (см. статья 8.1 ПДД).</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 25 000 ₽</span><span class="badge b-warn">Либо лишение права управления</span></div>
+      </div>
+
+      <div class="chapter" id="k-gl10">Глава 10. Внешний вид, этика, воздушное пространство</div>
+      <div class="article" data-search="10.1 неисполнение требований о внешнем виде госслужащих штраф 50.000 60.000">
+        <div class="art-head"><span class="art-num">10.1</span><span class="art-title">Неисполнение требований о внешнем виде</span></div>
+        <div class="art-body">Неисполнение требований законодательства Российской Федерации о внешнем виде сотрудников (служащих) государственных организаций (органов).</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 50 000 – 60 000 ₽</span></div>
+      </div>
+      <div class="article" data-search="10.2 неисполнение требований этики госслужащих штраф 25.000 50.000">
+        <div class="art-head"><span class="art-num">10.2</span><span class="art-title">Неисполнение требований этики</span></div>
+        <div class="art-body">Неисполнение требований законодательства Российской Федерации в сфере этики работников государственных организаций.</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 25 000 – 50 000 ₽</span></div>
+      </div>
+      <div class="article" data-search="10.3 взлет посадка без уведомления воздушное судно штраф 50.000 100.000">
+        <div class="art-head"><span class="art-num">10.3</span><span class="art-title">Взлёт и посадка без уведомления</span></div>
+        <div class="art-body">Взлет воздушного судна государственной без установленного законодательством о воздушном пространстве уведомления о взлете, посадка воздушного судна государственной без установленного законодательством о воздушном пространстве уведомления о посадке.</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 50 000 – 100 000 ₽</span></div>
+      </div>
+      <div class="article" data-search="10.4 нарушение иных правил пользования воздушным пространством штраф 50.000 100.000">
+        <div class="art-head"><span class="art-num">10.4</span><span class="art-title">Нарушение иных правил пользования воздушным пространством</span></div>
+        <div class="art-body">Нарушение иных правил пользования воздушным пространством, установленных законодательством о воздушном пространстве.</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 50 000 – 100 000 ₽</span></div>
+      </div>
+
+      <div class="chapter" id="k-gl11">Глава 11. Документооборот</div>
+      <div class="article" data-search="11.1 нарушение оформления реквизитов штраф 20.000 50.000">
+        <div class="art-head"><span class="art-num">11.1</span><span class="art-title">Нарушение оформления реквизитов</span></div>
+        <div class="art-body">Нарушения правил оформления реквизитов, а равно использование иных реквизитов, не предусмотренных законодательством о документообороте.</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 20 000 – 50 000 ₽</span></div>
+      </div>
+      <div class="article" data-search="11.2 нарушение общих требований к созданию документов штраф 50.000 75.000">
+        <div class="art-head"><span class="art-num">11.2</span><span class="art-title">Нарушение общих требований к созданию документов</span></div>
+        <div class="art-body">Нарушение общих требований к созданию документов, установленных законодательством о документообороте.</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 50 000 – 75 000 ₽</span></div>
+      </div>
+      <div class="article" data-search="11.3 нарушение иных специальных требований к созданию документов штраф 20.000 35.000">
+        <div class="art-head"><span class="art-num">11.3</span><span class="art-title">Нарушение иных специальных требований к созданию документов</span></div>
+        <div class="art-body">Нарушение иных специальных требований к созданию документов, установленных законодательством о документообороте.</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 20 000 – 35 000 ₽</span></div>
+      </div>
+    </section>
+
+    <!-- ================= УК ================= -->
+    <section class="doc" id="doc-uk">
+      <div class="doc-title">🔪 Уголовный кодекс РФ <span class="pill">Полный текст</span></div>
+
+      <div class="chapter" id="uk-gl37">Глава 37. Преступления против личности</div>
+      <div class="article" data-search="37.1 убийство умышленное причинение смерти 7 лет СПРП ★★★★">
+        <div class="art-head"><span class="art-num">37.1</span><span class="art-title">Убийство</span></div>
+        <div class="art-body">Убийство, то есть умышленное причинение смерти другому человеку.</div>
+        <div class="badges"><span class="badge b-term">Лишение свободы: 7 лет</span><span class="badge b-prp">СПРП ★★★★</span></div>
+      </div>
+      <div class="article" data-search="37.2 убийство двух или более лиц близких служебная деятельность мотивы ненависти 8 лет СПРП ★★★★">
+        <div class="art-head"><span class="art-num">37.2</span><span class="art-title">Убийство (квалифицированное)</span></div>
+        <div class="art-body">Убийство:
+а) двух или более лиц;
+б) лица или его близких в связи с осуществлением данным лицом служебной деятельности или выполнением общественного долга;
+в) по мотивам политической, идеологической, расовой, национальной или религиозной ненависти или вражды либо по мотивам ненависти или вражды в отношении какой-либо социальной группы.</div>
+        <div class="badges"><span class="badge b-term">Лишение свободы: 8 лет</span><span class="badge b-prp">СПРП ★★★★</span></div>
+      </div>
+      <div class="article" data-search="38.1 причинение тяжкого вреда здоровью опасного для жизни потеря сознания 5 лет СПРП ★★★">
+        <div class="art-head"><span class="art-num">38.1</span><span class="art-title">Причинение тяжкого вреда здоровью</span></div>
+        <div class="art-body">Причинение тяжкого вреда здоровью, опасного для жизни человека, или повлекшего за собой потерю сознания потерпевшего лица.</div>
+        <div class="badges"><span class="badge b-term">Лишение свободы: 5 лет</span><span class="badge b-prp">СПРП ★★★</span></div>
+      </div>
+      <div class="article" data-search="38.2 причинение тяжкого вреда здоровью двух или более лиц хулиганские побуждения мотивы ненависти 7 лет СПРП ★★★★">
+        <div class="art-head"><span class="art-num">38.2</span><span class="art-title">Причинение тяжкого вреда здоровью (квалифицированное)</span></div>
+        <div class="art-body">То же деяние, совершенное:
+а) в отношении двух или более лиц;
+б) из хулиганских побуждений;
+в) по мотивам политической, идеологической, расовой, национальной или религиозной ненависти или вражды либо по мотивам ненависти или вражды в отношении какой-либо социальной группы.</div>
+        <div class="badges"><span class="badge b-term">Лишение свободы: 7 лет</span><span class="badge b-prp">СПРП ★★★★</span></div>
+      </div>
+      <div class="article" data-search="39 угроза убийством причинением тяжкого вреда здоровью 4 года СПРП ★★★">
+        <div class="art-head"><span class="art-num">39</span><span class="art-title">Угроза убийством или причинением тяжкого вреда здоровью</span></div>
+        <div class="art-body">Угроза убийством или причинением тяжкого вреда здоровью, если имелись основания опасаться осуществления этой угрозы.</div>
+        <div class="badges"><span class="badge b-term">Лишение свободы: 4 года</span><span class="badge b-prp">СПРП ★★★</span></div>
+      </div>
+      <div class="article" data-search="40 изнасилование половое сношение насилие беспомощное состояние 6 лет СПРП ★★★">
+        <div class="art-head"><span class="art-num">40</span><span class="art-title">Изнасилование</span></div>
+        <div class="art-body">Изнасилование, то есть половое сношение с применением насилия или с угрозой его применения к потерпевшей или к другим лицам либо с использованием беспомощного состояния потерпевшей.</div>
+        <div class="badges"><span class="badge b-term">Лишение свободы: 6 лет</span><span class="badge b-prp">СПРП ★★★</span></div>
+      </div>
+      <div class="article" data-search="41.1 похищение человека 6 лет СПРП ★★★">
+        <div class="art-head"><span class="art-num">41.1</span><span class="art-title">Похищение человека</span></div>
+        <div class="art-body">Похищение человека.</div>
+        <div class="badges"><span class="badge b-term">Лишение свободы: 6 лет</span><span class="badge b-prp">СПРП ★★★</span></div>
+      </div>
+      <div class="article" data-search="41.2 похищение человека группа лиц насилие оружие 6 лет СПРП ★★★★">
+        <div class="art-head"><span class="art-num">41.2</span><span class="art-title">Похищение человека (квалифицированное)</span></div>
+        <div class="art-body">То же деяние, совершенное:
+а) группой лиц по предварительному сговору;
+б) с применением насилия, опасного для жизни или здоровья, либо с угрозой применения такого насилия;
+в) с применением оружия или предметов, используемых в качестве оружия;
+г) в отношении двух или более лиц.</div>
+        <div class="badges"><span class="badge b-term">Лишение свободы: 6 лет</span><span class="badge b-prp">СПРП ★★★★</span></div>
+      </div>
+      <div class="article" data-search="42 незаконное лишение свободы 4 года СПРП ★★★">
+        <div class="art-head"><span class="art-num">42</span><span class="art-title">Незаконное лишение свободы</span></div>
+        <div class="art-body">Незаконное лишение человека свободы, не связанное с его похищением.</div>
+        <div class="badges"><span class="badge b-term">Лишение свободы: 4 года</span><span class="badge b-prp">СПРП ★★★</span></div>
+      </div>
+      <div class="article" data-search="43 нарушение неприкосновенности жилища проникновение против воли штраф 20.000 3 года СПРП ★★">
+        <div class="art-head"><span class="art-num">43</span><span class="art-title">Нарушение неприкосновенности жилища</span></div>
+        <div class="art-body">Незаконное проникновение в жилище, совершенное против воли проживающего в нем лица.</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 20 000 ₽</span><span class="badge b-term">Лишение свободы: 3 года</span><span class="badge b-prp">СПРП ★★</span></div>
+      </div>
+
+      <div class="chapter" id="uk-gl44">Глава 44. Преступления против собственности</div>
+      <div class="article" data-search="44 кража тайное хищение чужого имущества штраф 30.000 3 года СПРП ★★">
+        <div class="art-head"><span class="art-num">44</span><span class="art-title">Кража</span></div>
+        <div class="art-body">Кража, то есть тайное хищение чужого имущества.</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 30 000 ₽</span><span class="badge b-term">Лишение свободы: 3 года</span><span class="badge b-prp">СПРП ★★</span></div>
+      </div>
+      <div class="article" data-search="45.1 присвоение растрата вверенное имущество штраф 50.000 3 года СПРП ★★">
+        <div class="art-head"><span class="art-num">45.1</span><span class="art-title">Присвоение или растрата</span></div>
+        <div class="art-body">Присвоение или растрата, то есть хищение чужого имущества, вверенного виновному.</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 50 000 ₽</span><span class="badge b-term">Лишение свободы: 3 года</span><span class="badge b-prp">СПРП ★★</span></div>
+      </div>
+      <div class="article" data-search="45.2 мошенничество хищение обман злоупотребление доверием штраф 50.000 3 года СПРП ★★★">
+        <div class="art-head"><span class="art-num">45.2</span><span class="art-title">Мошенничество</span></div>
+        <div class="art-body">Мошенничество, то есть хищение чужого имущества или приобретение права на чужое имущество путем обмана или злоупотребления доверием.</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 50 000 ₽</span><span class="badge b-term">Лишение свободы: 3 года</span><span class="badge b-prp">СПРП ★★★</span></div>
+      </div>
+      <div class="article" data-search="46.1 грабеж открытое хищение 4 года СПРП ★★">
+        <div class="art-head"><span class="art-num">46.1</span><span class="art-title">Грабеж</span></div>
+        <div class="art-body">Грабеж, то есть открытое хищение чужого имущества.</div>
+        <div class="badges"><span class="badge b-term">Лишение свободы: 4 года</span><span class="badge b-prp">СПРП ★★</span></div>
+      </div>
+      <div class="article" data-search="46.2 грабеж группа лиц проникновение в жилище 5 лет СПРП ★★★">
+        <div class="art-head"><span class="art-num">46.2</span><span class="art-title">Грабеж (квалифицированный)</span></div>
+        <div class="art-body">Грабеж, совершенный:
+а) группой лиц по предварительному сговору;
+б) с незаконным проникновением в жилище, помещение либо иное хранилище.</div>
+        <div class="badges"><span class="badge b-term">Лишение свободы: 5 лет</span><span class="badge b-prp">СПРП ★★★</span></div>
+      </div>
+      <div class="article" data-search="47.1 разбой нападение насилие опасное для жизни 5 лет СПРП ★★★">
+        <div class="art-head"><span class="art-num">47.1</span><span class="art-title">Разбой</span></div>
+        <div class="art-body">Разбой, то есть нападение в целях хищения чужого имущества, совершенное с применением насилия, опасного для жизни или здоровья, либо с угрозой применения такого насилия.</div>
+        <div class="badges"><span class="badge b-term">Лишение свободы: 5 лет</span><span class="badge b-prp">СПРП ★★★</span></div>
+      </div>
+      <div class="article" data-search="47.2 разбой группа лиц оружие 6 лет СПРП ★★★★">
+        <div class="art-head"><span class="art-num">47.2</span><span class="art-title">Разбой (квалифицированный)</span></div>
+        <div class="art-body">Разбой, совершенный группой лиц по предварительному сговору, а равно с применением оружия или предметов, используемых в качестве оружия.</div>
+        <div class="badges"><span class="badge b-term">Лишение свободы: 6 лет</span><span class="badge b-prp">СПРП ★★★★</span></div>
+      </div>
+      <div class="article" data-search="47.3 разбой двух или более лиц тяжкий вред здоровью 7 лет СПРП ★★★★">
+        <div class="art-head"><span class="art-num">47.3</span><span class="art-title">Разбой (особо квалифицированный)</span></div>
+        <div class="art-body">Разбой, совершённый:
+а) в отношении двух или более лиц;
+б) с причинением тяжкого вреда здоровью потерпевшего.</div>
+        <div class="badges"><span class="badge b-term">Лишение свободы: 7 лет</span><span class="badge b-prp">СПРП ★★★★</span></div>
+      </div>
+      <div class="article" data-search="48 умышленное уничтожение повреждение государственной собственности штраф 35.000 2 года СПРП ★★">
+        <div class="art-head"><span class="art-num">48</span><span class="art-title">Умышленное уничтожение или повреждение имущества</span></div>
+        <div class="art-body">Умышленное уничтожение или повреждение государственной собственности, то есть совершение действий, направленных на причинение вреда имуществу, находящемуся в собственности государства.
+Примечание: Под значительным ущербом в настоящей статье и в дальнейшем понимается стоимость имущества в размере от пятисот тысяч (500.000) рублей.</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 35 000 ₽</span><span class="badge b-term">Лишение свободы: 2 года</span><span class="badge b-prp">СПРП ★★</span></div>
+      </div>
+      <div class="article" data-search="48-1 порча государственной собственности штраф 50.000 3 года СПРП ★★★">
+        <div class="art-head"><span class="art-num">48-1</span><span class="art-title">Порча государственной собственности</span></div>
+        <div class="art-body">Уничтожение или повреждение государственной собственности.
+Примечание:
+1. Под умышленным уничтожением или повреждением понимается деяние, совершённое с прямым или косвенным умыслом.
+2. Понятие государственной собственности определяется Федеральным законом «О государственной собственности, закрытых и охраняемых территориях» № 86-ФЗ.
+3. Деяния, повлекшие повреждение государственной собственности по неосторожности (в том числе в результате дорожно-транспортного происшествия), не подпадают под действие настоящей статьи.</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 50 000 ₽</span><span class="badge b-term">Лишение свободы: 3 года</span><span class="badge b-prp">СПРП ★★★</span></div>
+      </div>
+      <div class="article" data-search="49.1 угон неправомерное завладение автомобилем без цели хищения штраф 35.000 2 года СПРП ★★">
+        <div class="art-head"><span class="art-num">49.1</span><span class="art-title">Неправомерное завладение автомобилем (угон)</span></div>
+        <div class="art-body">Неправомерное завладение автомобилем или иным транспортным средством без цели хищения (угон).</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 35 000 ₽</span><span class="badge b-term">Лишение свободы: 2 года</span><span class="badge b-prp">СПРП ★★</span></div>
+      </div>
+      <div class="article" data-search="49.2 угон служебного автомобиля цветографические схемы штраф 100.000 4 года СПРП ★★★★">
+        <div class="art-head"><span class="art-num">49.2</span><span class="art-title">Угон служебного автомобиля</span></div>
+        <div class="art-body">Неправомерное завладение служебным автомобилем или иным транспортным специальным средством с нанесенными на него цветографическими схемами без цели хищения (угон).</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 100 000 ₽</span><span class="badge b-term">Лишение свободы: 4 года</span><span class="badge b-prp">СПРП ★★★★</span></div>
+      </div>
+
+      <div class="chapter" id="uk-gl50">Глава 50. Экономические преступления</div>
+      <div class="article" data-search="50 незаконное предпринимательство без регистрации лицензии штраф 200.000 2 года СПРП ★★">
+        <div class="art-head"><span class="art-num">50</span><span class="art-title">Незаконное предпринимательство</span></div>
+        <div class="art-body">Осуществление предпринимательской деятельности без регистрации или без лицензии. Определяется судом.</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 200 000 ₽</span><span class="badge b-term">Лишение свободы: 2 года</span><span class="badge b-prp">СПРП ★★</span></div>
+      </div>
+      <div class="article" data-search="51 незаконное образование юридического лица штраф 250.000 5 лет СПРП ★★★">
+        <div class="art-head"><span class="art-num">51</span><span class="art-title">Незаконное образование юридического лица</span></div>
+        <div class="art-body">Образование (создание, реорганизация) юридического лица в нарушение требования законодательства о коммерческой деятельности. Определяется судом.</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 250 000 ₽</span><span class="badge b-term">Лишение свободы: 5 лет</span><span class="badge b-prp">СПРП ★★★</span></div>
+      </div>
+      <div class="article" data-search="52 уклонение от уплаты налогов сборов штраф 500.000 3 года СПРП ★★★">
+        <div class="art-head"><span class="art-num">52</span><span class="art-title">Уклонение от уплаты налогов</span></div>
+        <div class="art-body">Уклонение от уплаты налогов, сборов, подлежащих уплате организацией в соответствии с законодательством Российской Федерации. Определяется судом.</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 500 000 ₽</span><span class="badge b-term">Лишение свободы: 3 года</span><span class="badge b-prp">СПРП ★★★</span></div>
+      </div>
+
+      <div class="chapter" id="uk-gl53">Глава 53. Терроризм и общественная безопасность</div>
+      <div class="article" data-search="53 террористический акт взрыв поджог 8 лет СПРП ★★★★★★">
+        <div class="art-head"><span class="art-num">53</span><span class="art-title">Террористический акт</span></div>
+        <div class="art-body">Совершение взрыва, поджога или иных действий, устрашающих население и создающих опасность гибели человека, причинения значительного имущественного ущерба либо наступления иных тяжких последствий, в целях дестабилизации деятельности органов власти либо воздействия на принятие ими решений, а также угроза совершения указанных действий в целях воздействия на принятие решений органами власти.</div>
+        <div class="badges"><span class="badge b-term">Лишение свободы: 8 лет</span><span class="badge b-prp">СПРП ★★★★★★</span></div>
+      </div>
+      <div class="article" data-search="54 несообщение о преступлении 2 года СПРП ★★">
+        <div class="art-head"><span class="art-num">54</span><span class="art-title">Несообщение о преступлении</span></div>
+        <div class="art-body">Несообщение в органы власти, уполномоченные рассматривать сообщения о преступлении, о лице (лицах), которое по достоверно известным сведениям готовит, совершает или совершило хотя бы одно из преступлений, предусмотренных статьями 53, 55, 57, 58, 60, частями 3, 4, 5 статьи 63, статьями 69, 70, 71, 72, 73, 74, 75, 81, 82, 83, 87, 89, 90, 94 настоящего Кодекса.</div>
+        <div class="badges"><span class="badge b-term">Лишение свободы: 2 года</span><span class="badge b-prp">СПРП ★★</span></div>
+      </div>
+      <div class="article" data-search="55 захват заложника 7 лет СПРП ★★★★★★">
+        <div class="art-head"><span class="art-num">55</span><span class="art-title">Захват заложника</span></div>
+        <div class="art-body">Захват или удержание лица в качестве заложника, совершенные в целях понуждения государства, организации или гражданина совершить какое-либо действие или воздержаться от совершения какого-либо действия как условия освобождения заложника.</div>
+        <div class="badges"><span class="badge b-term">Лишение свободы: 7 лет</span><span class="badge b-prp">СПРП ★★★★★★</span></div>
+      </div>
+      <div class="article" data-search="56 заведомо ложное сообщение об акте терроризма 6 лет СПРП ★★★★">
+        <div class="art-head"><span class="art-num">56</span><span class="art-title">Заведомо ложное сообщение об акте терроризма</span></div>
+        <div class="art-body">Заведомо ложное сообщение о готовящихся взрыве, поджоге или иных действиях, создающих опасность гибели людей, причинения значительного имущественного ущерба либо наступления иных общественно опасных последствий, совершенное из хулиганских побуждений.</div>
+        <div class="badges"><span class="badge b-term">Лишение свободы: 6 лет</span><span class="badge b-prp">СПРП ★★★★</span></div>
+      </div>
+      <div class="article" data-search="57 организация незаконного вооруженного формирования 7 лет СПРП ★★★★★">
+        <div class="art-head"><span class="art-num">57</span><span class="art-title">Организация незаконного вооруженного формирования</span></div>
+        <div class="art-body">Создание вооруженного формирования (объединения, отряда, дружины или иной группы), не предусмотренного федеральным законом, а равно руководство таким формированием или его финансирование.</div>
+        <div class="badges"><span class="badge b-term">Лишение свободы: 7 лет</span><span class="badge b-prp">СПРП ★★★★★</span></div>
+      </div>
+      <div class="article" data-search="58 бандитизм устойчивая вооруженная группа нападение 8 лет СПРП ★★★★★★">
+        <div class="art-head"><span class="art-num">58</span><span class="art-title">Бандитизм</span></div>
+        <div class="art-body">Создание устойчивой вооруженной группы (банды) в целях нападения на граждан или организации, а равно руководство такой группой (бандой).</div>
+        <div class="badges"><span class="badge b-term">Лишение свободы: 8 лет</span><span class="badge b-prp">СПРП ★★★★★★</span></div>
+      </div>
+      <div class="article" data-search="59 угон судна воздушного водного транспорта 5 лет СПРП ★★★">
+        <div class="art-head"><span class="art-num">59</span><span class="art-title">Угон судна воздушного или водного транспорта</span></div>
+        <div class="art-body">Угон судна воздушного или водного транспорта, а равно захват такого судна в целях угона.</div>
+        <div class="badges"><span class="badge b-term">Лишение свободы: 5 лет</span><span class="badge b-prp">СПРП ★★★</span></div>
+      </div>
+      <div class="article" data-search="60 массовые беспорядки насилие погромы поджоги оружие 5 лет СПРП ★★★">
+        <div class="art-head"><span class="art-num">60</span><span class="art-title">Массовые беспорядки</span></div>
+        <div class="art-body">Организация массовых беспорядков, сопровождавшихся насилием, погромами, поджогами, уничтожением имущества, применением оружия, взрывных устройств, взрывчатых, отравляющих либо иных веществ и предметов, представляющих опасность для окружающих, а также оказанием вооруженного сопротивления представителю власти, а равно подготовка лица для организации таких массовых беспорядков или участия в них.</div>
+        <div class="badges"><span class="badge b-term">Лишение свободы: 5 лет</span><span class="badge b-prp">СПРП ★★★</span></div>
+      </div>
+      <div class="article" data-search="61 хулиганство грубое нарушение общественного порядка насилие оружие транспорт штраф 20.000 3 года СПРП ★★">
+        <div class="art-head"><span class="art-num">61</span><span class="art-title">Хулиганство</span></div>
+        <div class="art-body">Хулиганство, то есть грубое нарушение общественного порядка, выражающее явное неуважение к обществу, совершенное:
+а) с применением насилия к гражданам либо угрозой его применения;
+б) по мотивам политической, идеологической, расовой, национальной или религиозной ненависти или вражды либо по мотивам ненависти или вражды в отношении какой-либо социальной группы;
+в) на железнодорожном, морском, внутреннем водном или воздушном транспорте, а также на любом ином транспорте общего пользования.</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 20 000 ₽</span><span class="badge b-term">Лишение свободы: 3 года</span><span class="badge b-prp">СПРП ★★</span></div>
+      </div>
+      <div class="article" data-search="62.1 незаконное проникновение на закрытый объект штраф 40.000 4 года СПРП ★★★">
+        <div class="art-head"><span class="art-num">62.1</span><span class="art-title">Незаконное проникновение на закрытый объект</span></div>
+        <div class="art-body">Незаконное проникновение или нахождение на объекте, закрытом для общего доступа в соответствии с законодательством Российской Федерации о закрытых и охраняемых территориях.</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 40 000 ₽</span><span class="badge b-term">Лишение свободы: 4 года</span><span class="badge b-prp">СПРП ★★★</span></div>
+      </div>
+      <div class="article" data-search="62.2 незаконное проникновение на закрытый объект с преступлением 5 лет СПРП ★★★">
+        <div class="art-head"><span class="art-num">62.2</span><span class="art-title">Незаконное проникновение на закрытый объект (с преступлением)</span></div>
+        <div class="art-body">То же деяние, сопряженное с совершением одного или нескольких преступлений, предусмотренных статьями 48.2, 49.3, 53, 59, 75, 87, 89, 90.2, 94 настоящего Кодекса.</div>
+        <div class="badges"><span class="badge b-term">Лишение свободы: 5 лет</span><span class="badge b-prp">СПРП ★★★</span></div>
+      </div>
+      <div class="article" data-search="62.3 незаконное проникновение на объект воинских формирований штраф 80.000 5 лет СПРП ★★★">
+        <div class="art-head"><span class="art-num">62.3</span><span class="art-title">Незаконное проникновение на объект воинских формирований</span></div>
+        <div class="art-body">Незаконное проникновение или нахождение на объекте, принадлежащем воинским формированиям (воинские части), закрытые для общего доступа в соответствии с законодательством Российской Федерации о закрытых и охраняемых территориях.</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 80 000 ₽</span><span class="badge b-term">Лишение свободы: 5 лет</span><span class="badge b-prp">СПРП ★★★</span></div>
+      </div>
+      <div class="article" data-search="62.4 незаконное проникновение на закрытый объект госслужащим штраф 600.000 4 года СПРП ★★★">
+        <div class="art-head"><span class="art-num">62.4</span><span class="art-title">Незаконное проникновение на закрытый объект госслужащим</span></div>
+        <div class="art-body">Незаконное проникновение или нахождение на объекте, закрытом для общего доступа в соответствии с законодательством Российской Федерации о закрытых и охраняемых территориях, государственным служащим.</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 600 000 ₽</span><span class="badge b-term">Лишение свободы: 4 года</span><span class="badge b-prp">СПРП ★★★</span></div>
+      </div>
+      <div class="article" data-search="63.1 незаконное приобретение хранение сбыт ношение огнестрельного оружия 100 единиц 4 года СПРП ★★★">
+        <div class="art-head"><span class="art-num">63.1</span><span class="art-title">Незаконный оборот огнестрельного оружия</span></div>
+        <div class="art-body">Незаконное приобретение, хранение, передача, сбыт, или ношение оружия, его основных частей, материалов для его создания в количестве от ста (100) единиц.</div>
+        <div class="badges"><span class="badge b-term">Лишение свободы: 4 года</span><span class="badge b-prp">СПРП ★★★</span></div>
+      </div>
+      <div class="article" data-search="63.2 незаконный оборот запрещённых средств индивидуальной защиты 4 года СПРП ★★★">
+        <div class="art-head"><span class="art-num">63.2</span><span class="art-title">Незаконный оборот запрещённых средств индивидуальной защиты</span></div>
+        <div class="art-body">Незаконное приобретение, использование, хранение, передача, сбыт, или ношение запрещённых средств индивидуальной защиты.
+Примечание: Список запрещенного/разрешенного вооружения, средств индивидуальной защиты регламентируется Федеральным законом "Об оружии" № 34-ФЗ.</div>
+        <div class="badges"><span class="badge b-term">Лишение свободы: 4 года</span><span class="badge b-prp">СПРП ★★★</span></div>
+      </div>
+      <div class="article" data-search="63.3 ношение огнестрельного оружия в открытой форме демонстративное использование 5 лет СПРП ★★★">
+        <div class="art-head"><span class="art-num">63.3</span><span class="art-title">Ношение оружия в открытой форме</span></div>
+        <div class="art-body">Ношение огнестрельного оружия в открытой форме либо его демонстративное использование в общественных местах вне рамок, предусмотренных законодательством Российской Федерации.</div>
+        <div class="badges"><span class="badge b-term">Лишение свободы: 5 лет</span><span class="badge b-prp">СПРП ★★★</span></div>
+      </div>
+      <div class="article" data-search="63.4 причинение вреда здоровью с использованием оружия 6 лет СПРП ★★★★">
+        <div class="art-head"><span class="art-num">63.4</span><span class="art-title">Причинение вреда здоровью с использованием оружия</span></div>
+        <div class="art-body">Причинение вреда здоровью с использованием оружия.</div>
+        <div class="badges"><span class="badge b-term">Лишение свободы: 6 лет</span><span class="badge b-prp">СПРП ★★★★</span></div>
+      </div>
+      <div class="article" data-search="64 наркотические средства психотропные вещества реагенты прекурсоры спрайс голубой лед брейнкраш 5 лет СПРП ★★★">
+        <div class="art-head"><span class="art-num">64</span><span class="art-title">Незаконный оборот наркотических средств</span></div>
+        <div class="art-body">Незаконные приобретение, хранение, перевозка, изготовление, переработка без цели сбыта наркотических средств, психотропных веществ или их аналогов, а также незаконные приобретение, хранение, перевозка реагентов, прекурсоров для изготовления наркотических средств, психотропных веществ или их аналогов.
+Примечание:
+1. Под наркотическими средствами понимаются вещества со следующими условными наименованиями: “Спрайс”, “Голубой лед”, “Брейнкраш”, “Армейское Обезболивающее”, “Лечебная сигарета”, “Реагенты”.
+2. Опиоидные анальгетики, “Армейское Обезболивающее” могут храниться и использоваться сотрудниками гос. (силовых) структур при исполнении ими своих должностных обязанностей.</div>
+        <div class="badges"><span class="badge b-term">Лишение свободы: 5 лет</span><span class="badge b-prp">СПРП ★★★</span></div>
+      </div>
+      <div class="article" data-search="64.1 производство сбыт пересылка наркотических средств 6 лет СПРП ★★★★">
+        <div class="art-head"><span class="art-num">64.1</span><span class="art-title">Производство, сбыт или пересылка наркотических средств</span></div>
+        <div class="art-body">Незаконные производство, сбыт или пересылка наркотических средств, психотропных веществ или их аналогов.</div>
+        <div class="badges"><span class="badge b-term">Лишение свободы: 6 лет</span><span class="badge b-prp">СПРП ★★★★</span></div>
+      </div>
+      <div class="article" data-search="65 организация вовлечение в занятие проституцией принуждение 4 года СПРП ★★">
+        <div class="art-head"><span class="art-num">65</span><span class="art-title">Организация или вовлечение в занятие проституцией</span></div>
+        <div class="art-body">Организация или вовлечение в занятие проституцией или принуждение к продолжению занятия проституцией.</div>
+        <div class="badges"><span class="badge b-term">Лишение свободы: 4 года</span><span class="badge b-prp">СПРП ★★</span></div>
+      </div>
+      <div class="article" data-search="66 жестокое обращение с животными боль страдания гибель увечье 4 года СПРП ★★">
+        <div class="art-head"><span class="art-num">66</span><span class="art-title">Жестокое обращение с животными</span></div>
+        <div class="art-body">Жестокое обращение с животным в целях причинения ему боли и (или) страданий, а равно из хулиганских побуждений или из корыстных побуждений, повлекшее его гибель или увечье.</div>
+        <div class="badges"><span class="badge b-term">Лишение свободы: 4 года</span><span class="badge b-prp">СПРП ★★</span></div>
+      </div>
+
+      <div class="chapter" id="uk-gl67">Глава 67. Неуплата штрафов</div>
+      <div class="article" data-search="67.1 неуплата отказ от уплаты штрафа до 30.000 3 года СПРП ★★★">
+        <div class="art-head"><span class="art-num">67.1</span><span class="art-title">Неуплата или отказ от уплаты штрафа (до 30 000 ₽)</span></div>
+        <div class="art-body">Неуплата или отказ от уплаты штрафа лицом, если штраф или сумма штрафов не превышает и не составляет тридцати тысяч (30.000) рублей.</div>
+        <div class="badges"><span class="badge b-term">Лишение свободы: 3 года</span><span class="badge b-prp">СПРП ★★★</span></div>
+      </div>
+      <div class="article" data-search="67.2 неуплата отказ от уплаты штрафа 30.000 50.000 5 лет СПРП ★★★">
+        <div class="art-head"><span class="art-num">67.2</span><span class="art-title">Неуплата или отказ от уплаты штрафа (30 000–50 000 ₽)</span></div>
+        <div class="art-body">Неуплата или отказ от уплаты штрафа лицом, если штраф или сумма штрафов составляет тридцать и более тысяч (30.000) рублей, но не превышает и не составляет пятидесяти тысяч (50.000) рублей.</div>
+        <div class="badges"><span class="badge b-term">Лишение свободы: 5 лет</span><span class="badge b-prp">СПРП ★★★</span></div>
+      </div>
+      <div class="article" data-search="67.3 неуплата отказ от уплаты штрафа более 50.000 6 лет СПРП ★★★★">
+        <div class="art-head"><span class="art-num">67.3</span><span class="art-title">Неуплата или отказ от уплаты штрафа (более 50 000 ₽)</span></div>
+        <div class="art-body">Неуплата или отказ от уплаты штрафа лицом, если штраф или сумма штрафов составляет пятьдесят и более тысяч (50.000) рублей.</div>
+        <div class="badges"><span class="badge b-term">Лишение свободы: 6 лет</span><span class="badge b-prp">СПРП ★★★★</span></div>
+      </div>
+
+      <div class="chapter" id="uk-gl68">Глава 68. Дорожное движение</div>
+      <div class="article" data-search="68.1 нарушение ПДД тяжкий вред здоровью 3 года СПРП ★★★">
+        <div class="art-head"><span class="art-num">68.1</span><span class="art-title">Нарушение ПДД, повлекшее тяжкий вред здоровью</span></div>
+        <div class="art-body">Нарушение лицом, управляющим автомобилем либо другим транспортным средством, правил дорожного движения или эксплуатации транспортных средств, повлекшее по неосторожности причинение тяжкого вреда здоровью человека.
+Примечание: Под тяжким вредом здоровью понимается состояние человека в настоящей статье и других статьях настоящего Кодекса, при котором он без медицинской помощи не может прийти в сознание.</div>
+        <div class="badges"><span class="badge b-term">Лишение свободы: 3 года</span><span class="badge b-prp">СПРП ★★★</span></div>
+      </div>
+      <div class="article" data-search="68.2 нарушение ПДД смерть человека 4 года СПРП ★★★★">
+        <div class="art-head"><span class="art-num">68.2</span><span class="art-title">Нарушение ПДД, повлекшее смерть человека</span></div>
+        <div class="art-body">Деяние, предусмотренное частью первой настоящей статьи, повлекшее по неосторожности смерть человека.
+Примечание: Под тяжким вредом здоровью понимается состояние человека в настоящей статье и других статьях настоящего Кодекса, при котором он без медицинской помощи не может прийти в сознание.</div>
+        <div class="badges"><span class="badge b-term">Лишение свободы: 4 года</span><span class="badge b-prp">СПРП ★★★★</span></div>
+      </div>
+      <div class="article" data-search="68.3 неисполнение предписаний ГИБДД штраф 20.000 2 года СПРП ★★">
+        <div class="art-head"><span class="art-num">68.3</span><span class="art-title">Неисполнение предписаний ГИБДД</span></div>
+        <div class="art-body">Неисполнение предписаний представителей органа, уполномоченного в соответствии с законодательством Российской Федерации осуществлять надзор в сфере безопасности дорожного движения.
+Примечание: Под тяжким вредом здоровью понимается состояние человека в настоящей статье и других статьях настоящего Кодекса, при котором он без медицинской помощи не может прийти в сознание.</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 20 000 ₽</span><span class="badge b-term">Лишение свободы: 2 года</span><span class="badge b-prp">СПРП ★★</span></div>
+      </div>
+      <div class="article" data-search="68.4 наезд на человека транспортным средством штраф 30.000 2 года СПРП ★★">
+        <div class="art-head"><span class="art-num">68.4</span><span class="art-title">Наезд на человека транспортным средством</span></div>
+        <div class="art-body">Причинение вреда здоровью человеку, совершая на него наезд транспортным средством.
+Примечание: Под тяжким вредом здоровью понимается состояние человека в настоящей статье и других статьях настоящего Кодекса, при котором он без медицинской помощи не может прийти в сознание.</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 30 000 ₽</span><span class="badge b-term">Лишение свободы: 2 года</span><span class="badge b-prp">СПРП ★★</span></div>
+      </div>
+      <div class="article" data-search="68.5 нарушение ПДД сотрудником госорганизации 5 лет СПРП ★★★★">
+        <div class="art-head"><span class="art-num">68.5</span><span class="art-title">Нарушение ПДД сотрудником госорганизации</span></div>
+        <div class="art-body">Деяние, предусмотренное частью первой настоящей статьи, совершенное сотрудником государственной организации при исполнении служебных обязанностей.
+Примечание: Под тяжким вредом здоровью понимается состояние человека в настоящей статье и других статьях настоящего Кодекса, при котором он без медицинской помощи не может прийти в сознание.</div>
+        <div class="badges"><span class="badge b-term">Лишение свободы: 5 лет</span><span class="badge b-prp">СПРП ★★★★</span></div>
+      </div>
+
+      <div class="chapter" id="uk-gl69">Глава 69. Государственные преступления</div>
+      <div class="article" data-search="69 государственная измена шпионаж выдача сведений гостайна 15 лет СПРП ★★★★★★">
+        <div class="art-head"><span class="art-num">69</span><span class="art-title">Государственная измена</span></div>
+        <div class="art-body">Государственная измена, то есть совершенные гражданином Российской Федерации шпионаж, выдача иностранному государству, международной либо иностранной организации или их представителям сведений, составляющих государственную тайну, доверенную лицу или ставшую известной ему по службе, работе, учебе или в иных случаях, предусмотренных законодательством Российской Федерации. Определяется судом.</div>
+        <div class="badges"><span class="badge b-term">Лишение свободы: 15 лет</span><span class="badge b-prp">СПРП ★★★★★★</span></div>
+      </div>
+      <div class="article" data-search="70 посягательство на жизнь государственного деятеля 5 лет СПРП ★★★★">
+        <div class="art-head"><span class="art-num">70</span><span class="art-title">Посягательство на жизнь государственного или общественного деятеля</span></div>
+        <div class="art-body">Посягательство на жизнь государственного или общественного деятеля, совершенное в целях прекращения его государственной или иной политической деятельности либо из мести за такую деятельность.
+Примечание: Под государственными или общественными деятелями признаются Губернатор Федерального округа, Вице-губернатор, Председатель законодательного собрания и его заместители, депутаты, министры, судьи, Президент адвокатской палаты, руководитель следственного органа СК по субъекту и его заместители, прокурор субъекта и его заместители, Председатель СК РФ и его заместители, Генеральный прокурор РФ и его заместители, сенаторы Совета Федерации, Председатель Совета Федерации.</div>
+        <div class="badges"><span class="badge b-term">Лишение свободы: 5 лет</span><span class="badge b-prp">СПРП ★★★★</span></div>
+      </div>
+      <div class="article" data-search="71 вооруженный мятеж свержение конституционного строя 10 лет СПРП ★★★★★★">
+        <div class="art-head"><span class="art-num">71</span><span class="art-title">Вооруженный мятеж</span></div>
+        <div class="art-body">Организация вооруженного мятежа либо активное участие в нем в целях свержения или насильственного изменения конституционного строя Российской Федерации либо нарушения территориальной целостности Российской Федерации. Определяется судом.</div>
+        <div class="badges"><span class="badge b-term">Лишение свободы: 10 лет</span><span class="badge b-prp">СПРП ★★★★★★</span></div>
+      </div>
+      <div class="article" data-search="72.1 экстремизм 6 лет СПРП ★★★★★">
+        <div class="art-head"><span class="art-num">72.1</span><span class="art-title">Экстремизм</span></div>
+        <div class="art-body">Занятие экстремизмом. Определяется судом.</div>
+        <div class="badges"><span class="badge b-term">Лишение свободы: 6 лет</span><span class="badge b-prp">СПРП ★★★★★</span></div>
+      </div>
+      <div class="article" data-search="72.2 публичные призывы к экстремистской деятельности 4 года СПРП ★★★">
+        <div class="art-head"><span class="art-num">72.2</span><span class="art-title">Публичные призывы к экстремистской деятельности</span></div>
+        <div class="art-body">Публичные призывы к осуществлению экстремистской деятельности. Определяется судом.</div>
+        <div class="badges"><span class="badge b-term">Лишение свободы: 4 года</span><span class="badge b-prp">СПРП ★★★</span></div>
+      </div>
+      <div class="article" data-search="73.1 публичные призывы против безопасности государства 5 лет СПРП ★★★★">
+        <div class="art-head"><span class="art-num">73.1</span><span class="art-title">Публичные призывы против безопасности государства</span></div>
+        <div class="art-body">Публичные призывы к осуществлению деятельности, направленной против безопасности Российской Федерации, либо к воспрепятствованию исполнения органами власти и их должностными лицами своих полномочий по обеспечению безопасности Российской Федерации.</div>
+        <div class="badges"><span class="badge b-term">Лишение свободы: 5 лет</span><span class="badge b-prp">СПРП ★★★★</span></div>
+      </div>
+      <div class="article" data-search="73.2 публичные призывы нарушение территориальной целостности штраф 50.000 4 года СПРП ★★★">
+        <div class="art-head"><span class="art-num">73.2</span><span class="art-title">Публичные призывы к нарушению территориальной целостности</span></div>
+        <div class="art-body">Публичные призывы к осуществлению действий, направленных на нарушение территориальной целостности Российской Федерации.</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 50 000 ₽</span><span class="badge b-term">Лишение свободы: 4 года</span><span class="badge b-prp">СПРП ★★★</span></div>
+      </div>
+      <div class="article" data-search="74 разглашение государственной тайны 4 года СПРП ★★★★">
+        <div class="art-head"><span class="art-num">74</span><span class="art-title">Разглашение государственной тайны</span></div>
+        <div class="art-body">Разглашение сведений, составляющих государственную тайну, лицом, которому она была доверена или стала известна по службе, работе, учебе или в иных случаях, предусмотренных законодательством Российской Федерации, если эти сведения стали достоянием других лиц.</div>
+        <div class="badges"><span class="badge b-term">Лишение свободы: 4 года</span><span class="badge b-prp">СПРП ★★★★</span></div>
+      </div>
+      <div class="article" data-search="75 незаконное получение сведений государственной тайны похищение обман шантаж 4 года СПРП ★★★★">
+        <div class="art-head"><span class="art-num">75</span><span class="art-title">Незаконное получение сведений, составляющих государственную тайну</span></div>
+        <div class="art-body">Получение сведений, составляющих государственную тайну, путем похищения, обмана, шантажа, принуждения, угрозы применения насилия либо иным незаконным способом.</div>
+        <div class="badges"><span class="badge b-term">Лишение свободы: 4 года</span><span class="badge b-prp">СПРП ★★★★</span></div>
+      </div>
+
+      <div class="chapter" id="uk-gl76">Глава 76. Должностные преступления</div>
+      <div class="article" data-search="76.1 злоупотребление должностными полномочиями корыстная заинтересованность штраф 500.000 3 года СПРП ★★">
+        <div class="art-head"><span class="art-num">76.1</span><span class="art-title">Злоупотребление должностными полномочиями</span></div>
+        <div class="art-body">Использование должностным лицом своих служебных полномочий вопреки интересам службы, если это деяние совершено из корыстной или иной личной заинтересованности и повлекло существенное нарушение прав и законных интересов граждан или организаций либо охраняемых законом интересов общества или государства.
+Примечания:
+1. Должностными лицами в статьях настоящей главы признаются лица, постоянно, временно или по специальному полномочию осуществляющие функции представителя власти либо выполняющие организационно-распорядительные, административно-хозяйственные функции в государственных органах, органах местного самоуправления, государственных организациях.
+2. Деянием повлекшим за собой тяжкие последствия в статьях настоящей главы признаются производственные аварии, длительное нарушение работы предприятия (органа власти), причинение значительного материального ущерба.
+3. Деянием повлекшим за собой существенное нарушение прав граждан или организаций в результате злоупотребления должностными полномочиями или превышения должностных полномочий в статьях настоящей главы признается нарушение прав и свобод физических и юридических лиц, гарантированных Конституцией Российской Федерации.
+4. Деянием повлекшим за собой существенное нарушение законных интересов граждан или организаций в результате злоупотребления должностными полномочиями или превышения должностных полномочий в статьях настоящей главы признается, в частности, создание препятствий в удовлетворении гражданами или организациями своих потребностей, не противоречащих нормам права и общественной нравственности.
+5. Деянием явно выходящим за пределы полномочий должностного лица в статьях настоящей главы признаются активные действия, которые повлекли существенное нарушение прав и законных интересов граждан или организаций либо охраняемых законом интересов общества или государства.
+6. Превышение должностных полномочий в статье 77 настоящей главы может выражаться, например, в совершении должностным лицом при исполнении служебных обязанностей действий, которые:
+а) относятся к полномочиям другого должностного лица (вышестоящего или равного по статусу);
+б) могут быть совершены только при наличии особых обстоятельств, указанных в законе или подзаконном акте (например, применение оружия в отношении лица, если его действия не создавали реальной опасности для жизни других лиц);
+в) совершаются должностным лицом единолично, однако могут быть произведены только коллегиально либо в соответствии с порядком, установленным законом, по согласованию с другим должностным лицом или органом;
+г) никто и ни при каких обстоятельствах не вправе совершать.</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 500 000 ₽</span><span class="badge b-term">Лишение свободы: 3 года</span><span class="badge b-prp">СПРП ★★</span></div>
+      </div>
+      <div class="article" data-search="76.2 злоупотребление должностными полномочиями руководитель заместитель штраф 1.000.000 6 лет СПРП ★★★">
+        <div class="art-head"><span class="art-num">76.2</span><span class="art-title">Злоупотребление должностными полномочиями (руководитель)</span></div>
+        <div class="art-body">То же деяние, совершенное лицом, занимающим должность руководителя, заместителя руководителя органа государственной власти.
+Примечания: (см. примечания к ст. 76.1)</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 1 000 000 ₽</span><span class="badge b-term">Лишение свободы: 6 лет</span><span class="badge b-prp">СПРП ★★★</span></div>
+      </div>
+      <div class="article" data-search="76.3 злоупотребление должностными полномочиями тяжкие последствия 7 лет СПРП ★★★★">
+        <div class="art-head"><span class="art-num">76.3</span><span class="art-title">Злоупотребление должностными полномочиями (тяжкие последствия)</span></div>
+        <div class="art-body">Деяния, предусмотренные частями первой или второй настоящей статьи, повлекшие тяжкие последствия.
+Примечания: (см. примечания к ст. 76.1)</div>
+        <div class="badges"><span class="badge b-term">Лишение свободы: 7 лет</span><span class="badge b-prp">СПРП ★★★★</span></div>
+      </div>
+      <div class="article" data-search="77.1 превышение должностных полномочий явно выходящие за пределы штраф 600.000 3 года СПРП ★★">
+        <div class="art-head"><span class="art-num">77.1</span><span class="art-title">Превышение должностных полномочий</span></div>
+        <div class="art-body">Совершение должностным лицом действий, явно выходящих за пределы его полномочий, вопреки установленному законом или иным нормативным правовым актом порядку совершение каких-либо действий и повлекших существенное нарушение прав и законных интересов граждан или организаций либо охраняемых законом интересов общества или государства.</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 600 000 ₽</span><span class="badge b-term">Лишение свободы: 3 года</span><span class="badge b-prp">СПРП ★★</span></div>
+      </div>
+      <div class="article" data-search="77.2 превышение должностных полномочий руководитель глава штраф 2.000.000 6 лет СПРП ★★★">
+        <div class="art-head"><span class="art-num">77.2</span><span class="art-title">Превышение должностных полномочий (руководитель)</span></div>
+        <div class="art-body">То же деяние, совершенное лицом, занимающим должность руководителя, заместителя руководителя органа государственной власти, а равно главой органа местного самоуправления.</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 2 000 000 ₽</span><span class="badge b-term">Лишение свободы: 6 лет</span><span class="badge b-prp">СПРП ★★★</span></div>
+      </div>
+      <div class="article" data-search="77.3 превышение должностных полномочий насилие оружие тяжкие последствия группа лиц 3-7 лет СПРП ★★★">
+        <div class="art-head"><span class="art-num">77.3</span><span class="art-title">Превышение должностных полномочий (квалифицированное)</span></div>
+        <div class="art-body">Деяния, предусмотренные частями первой или второй настоящей статьи, если они совершены:
+а) с применением насилия или угрозой применения насилия;
+б) с применением оружия или специальных средств;
+в) с причинением тяжких последствий;
+г) группой лиц по предварительному сговору или организованной группой;
+д) из корыстной или иной личной заинтересованности.</div>
+        <div class="badges"><span class="badge b-term">Лишение свободы: 3–7 лет</span><span class="badge b-prp">СПРП ★★★</span></div>
+      </div>
+      <div class="article" data-search="77.4 задержание без оснований штраф 700.000 3 года СПРП ★★★">
+        <div class="art-head"><span class="art-num">77.4</span><span class="art-title">Задержание без оснований</span></div>
+        <div class="art-body">Производство сотрудником правоохранительного органа задержания в отсутствии оснований для задержаний в соответствии с процессуальным законодательством.</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 700 000 ₽</span><span class="badge b-term">Лишение свободы: 3 года</span><span class="badge b-prp">СПРП ★★★</span></div>
+      </div>
+      <div class="article" data-search="77.5 незаконные требования сотрудника правоохранительного органа штраф 800.000 3 года СПРП ★★★">
+        <div class="art-head"><span class="art-num">77.5</span><span class="art-title">Незаконные требования сотрудника</span></div>
+        <div class="art-body">Незаконные требования сотрудника правоохранительного органа.</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 800 000 ₽</span><span class="badge b-term">Лишение свободы: 3 года</span><span class="badge b-prp">СПРП ★★★</span></div>
+      </div>
+      <div class="article" data-search="78 неисполнение приказа штраф 500.000 3 года СПРП ★★★">
+        <div class="art-head"><span class="art-num">78</span><span class="art-title">Неисполнение приказа</span></div>
+        <div class="art-body">Умышленное неисполнение сотрудником государственного органа приказа начальника, руководителя или иного лица, уполномоченного на управление либо осуществление руководства государственного органа, отданного в установленном порядке и не противоречащего закону.</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 500 000 ₽</span><span class="badge b-term">Лишение свободы: 3 года</span><span class="badge b-prp">СПРП ★★★</span></div>
+      </div>
+      <div class="article" data-search="79 получение дача взятки 8 лет СПРП ★★★★★★">
+        <div class="art-head"><span class="art-num">79</span><span class="art-title">Получение или дача взятки</span></div>
+        <div class="art-body">Получение или дача должностным лицом или должностным лицам лично или через посредника взятки в виде денег, ценных бумаг, иного имущества либо в виде незаконных оказаниях ему услуг имущественного характера, предоставления иных имущественных прав за совершение действий (бездействий) в пользу взяткодателя или представляемых им лиц, если указанные действия входят в служебные полномочия должностного лица либо если оно в силу должностного положения может способствовать указанным действиям (бездействию), а равно за общее покровительство или попустительство по службе.
+Примечания: Лицо, давшее взятку, освобождается от уголовной ответственности, если оно активно способствовало раскрытию и (или) расследованию преступления и либо в отношении него имело место вымогательство взятки со стороны должностного лица, либо лицо после совершения преступления добровольно сообщило в орган, имеющий право возбудить уголовное дело, о даче взятки.</div>
+        <div class="badges"><span class="badge b-term">Лишение свободы: 8 лет</span><span class="badge b-prp">СПРП ★★★★★★</span></div>
+      </div>
+      <div class="article" data-search="80.1 халатность недобросовестное небрежное отношение штраф 800.000 2 года СПРП ★">
+        <div class="art-head"><span class="art-num">80.1</span><span class="art-title">Халатность</span></div>
+        <div class="art-body">Ненадлежащее исполнение должностным лицом своих обязанностей вследствие недобросовестного или небрежного отношения к службе либо обязанностей по должности, если это повлекло причинения ущерба или существенного нарушения прав и законных интересов граждан или организаций либо охраняемых законом интересов общества или государства.</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 800 000 ₽</span><span class="badge b-term">Лишение свободы: 2 года</span><span class="badge b-prp">СПРП ★</span></div>
+      </div>
+      <div class="article" data-search="80.2 халатность неисполнение обязанностей 6 лет СПРП ★★★">
+        <div class="art-head"><span class="art-num">80.2</span><span class="art-title">Халатность (неисполнение обязанностей)</span></div>
+        <div class="art-body">Неисполнение должностным лицом своих обязанностей вследствие недобросовестного или небрежного отношения к службе либо обязанностей по должности, если это повлекло причинения ущерба или существенного нарушения прав и законных интересов граждан или организаций либо охраняемых законом интересов общества или государства.</div>
+        <div class="badges"><span class="badge b-term">Лишение свободы: 6 лет</span><span class="badge b-prp">СПРП ★★★</span></div>
+      </div>
+      <div class="article" data-search="80.3 нарушение процессуальных норм задержание арест штраф 1.000.000 3 года СПРП ★★">
+        <div class="art-head"><span class="art-num">80.3</span><span class="art-title">Нарушение процессуальных норм при задержании</span></div>
+        <div class="art-body">Нарушение установленных процессуальных норм о содержании действий при производстве задержания и ареста сотрудником правоохранительного органа.</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 1 000 000 ₽</span><span class="badge b-term">Лишение свободы: 3 года</span><span class="badge b-prp">СПРП ★★</span></div>
+      </div>
+      <div class="article" data-search="80.4 отказ от реализации прав задержанного ненадлежащая реализация штраф 1.250.000 3 года СПРП ★★">
+        <div class="art-head"><span class="art-num">80.4</span><span class="art-title">Отказ от реализации прав задержанного</span></div>
+        <div class="art-body">Отказ от реализации прав задержанного или их реализация ненадлежащим образом в нарушение процессуального законодательства Российской Федерации.</div>
+        <div class="badges"><span class="badge b-fine">Штраф: 1 250 000 ₽</span><span class="badge b-term">Лишение свободы: 3 года</span><span class="badge b-prp">СПРП ★★</span></div>
+      </div>
+    </section>
+  </main>
 </div>
 
-<div class="container">
-  <div class="hero">
-    <h1>УФСИН РОССИИ</h1>
-    <p>Информационный портал Управления Федеральной службы исполнения наказаний по Рублевскому федеральному округу.</p>
-  </div>
-
-  <div class="grid">
-    <a href="federation-charter.html" class="card">
-      <div class="card-icon">📕</div>
-      <div class="card-title">Устав ИК-7 УФСИН</div>
-      <div class="card-desc">Порядок службы, иерархия званий, права и обязанности сотрудников.</div>
-    </a>
-    <a href="federation-rules.html" class="card">
-      <div class="card-icon">🚨</div>
-      <div class="card-title">Регламенты и ШИЗО</div>
-      <div class="card-desc">Правила допуска на территорию, личный обыск (Ст. 19.1 ПК), содержание в ШИЗО.</div>
-    </a>
-    <a href="audit.html" class="card">
-      <div class="card-icon">🧮</div>
-      <div class="card-title">Калькулятор баллов</div>
-      <div class="card-desc">Подсчет баллов, генератор рапортов на повышение и еженедельных отчетов.</div>
-    </a>
-    <a href="profile.html" class="card">
-      <div class="card-icon">👤</div>
-      <div class="card-title">Личный кабинет</div>
-      <div class="card-desc">Профиль сотрудника, управление учетной записью и должностями.</div>
-    </a>
-    <a href="uk.html" class="card">
-      <div class="card-icon">⚔️</div>
-      <div class="card-title">Уголовный кодекс</div>
-      <div class="card-desc">Преступления и наказания (99 статей).</div>
-    </a>
-    <a href="koap.html" class="card">
-      <div class="card-icon">📋</div>
-      <div class="card-title">КоАП РФ</div>
-      <div class="card-desc">Административные правонарушения.</div>
-    </a>
-  </div>
-</div>
+<div class="hit-stats" id="hitStats"></div>
 
 <script>
-  var aiBtn = document.getElementById('aiBtn');
-  var aiDropdown = document.getElementById('aiDropdown');
+(function(){
+  const search = document.getElementById('search');
+  const tabs = document.querySelectorAll('.tab');
+  const docs = document.querySelectorAll('section.doc');
+  const toc = document.getElementById('toc');
+  const hitStats = document.getElementById('hitStats');
+  let currentDoc = 'ustav';
 
-  aiBtn.addEventListener('click', function(e) {
-    e.preventDefault();
-    aiDropdown.classList.toggle('active');
-    if (aiDropdown.classList.contains('active')) {
-      document.getElementById('aiChatInput').focus();
-    }
-  });
-
-  document.addEventListener('click', function(e) {
-    if (!aiDropdown.contains(e.target) && !aiBtn.contains(e.target)) {
-      aiDropdown.classList.remove('active');
-    }
-  });
-
-  window.sendAI = function() {
-    var input = document.getElementById('aiChatInput');
-    var body = document.getElementById('aiChatBody');
-    var query = input.value.toLowerCase().trim();
-    if (!query) return;
-
-    var userMsg = document.createElement('div');
-    userMsg.className = 'ai-msg user';
-    userMsg.textContent = input.value;
-    body.appendChild(userMsg);
-    input.value = '';
-    body.scrollTop = body.scrollHeight;
-
-    setTimeout(function() {
-      var bestMatch = null;
-      var maxScore = 0;
-      var KB = [
-        { keys: ['убийство', 'убил'], title: 'Статья 37 УК РФ', ans: 'Убийство. 7 лет лишения свободы.', url: 'uk.html#art-37' },
-        { keys: ['кража', 'украл'], title: 'Статья 44 УК РФ', ans: 'Кража. Штраф 30.000 или 3 года.', url: 'uk.html#art-44' },
-        { keys: ['грабеж', 'ограбил'], title: 'Статья 46 УК РФ', ans: 'Грабеж. 4 года лишения свободы.', url: 'uk.html#art-46' },
-        { keys: ['разбой', 'напал'], title: 'Статья 47 УК РФ', ans: 'Разбой. 5 лет лишения свободы.', url: 'uk.html#art-47' },
-        { keys: ['адвокат'], title: 'Статья 9 ПК РФ', ans: 'Ожидание адвоката 5 минут.', url: 'process.html' },
-        { keys: ['задержание'], title: 'Статья 6 ПК РФ', ans: 'Задержание не более 60 минут.', url: 'process.html' },
-        { keys: ['обыск'], title: 'Статья 19.1 ПК РФ', ans: 'Личный обыск без постановления при задержании.', url: 'federation-rules.html' },
-        { keys: ['шизо', 'изолятор'], title: 'ШИЗО', ans: 'Помещение в ШИЗО за нарушение режима.', url: 'federation-rules.html' }
-      ];
-
-      KB.forEach(function(item) {
-        var score = 0;
-        item.keys.forEach(function(k) { if (query.includes(k)) score++; });
-        if (score > maxScore) { maxScore = score; bestMatch = item; }
+  // ---------- Построение TOC ----------
+  function buildToc(docId){
+    toc.innerHTML = '';
+    const doc = document.getElementById(docId);
+    if(!doc) return;
+    const chapters = doc.querySelectorAll('.chapter');
+    chapters.forEach(ch=>{
+      const a = document.createElement('a');
+      a.textContent = ch.textContent.trim();
+      a.href = '#' + ch.id;
+      a.addEventListener('click', (e)=>{
+        e.preventDefault();
+        document.getElementById(ch.id).scrollIntoView({behavior:'smooth', block:'start'});
       });
+      toc.appendChild(a);
+    });
+  }
 
-      var botMsg = document.createElement('div');
-      botMsg.className = 'ai-msg bot';
-      if (bestMatch) {
-        botMsg.innerHTML = '<strong>' + bestMatch.title + '</strong><br>' + bestMatch.ans + '<br><br><a href="' + bestMatch.url + '">🔗 Перейти к статье</a>';
-      } else {
-        botMsg.innerHTML = 'Не нашел статью. Спросите иначе (напр: "срок за кражу").';
+  // ---------- Переключение вкладок ----------
+  tabs.forEach(t=>{
+    t.addEventListener('click', ()=>{
+      tabs.forEach(x=>x.classList.remove('active'));
+      t.classList.add('active');
+      currentDoc = t.dataset.doc;
+      docs.forEach(d=>d.classList.toggle('active', d.id === 'doc-' + currentDoc));
+      buildToc('doc-' + currentDoc);
+      search.value = '';
+      clearHits();
+      window.scrollTo({top:0, behavior:'smooth'});
+    });
+  });
+  buildToc('doc-ustav');
+
+  // ---------- Утилиты ----------
+  function clearHits(){
+    document.querySelectorAll('.article.hit').forEach(a=>a.classList.remove('hit'));
+    document.querySelectorAll('mark').forEach(m=>{
+      const parent = m.parentNode;
+      parent.replaceChild(document.createTextNode(m.textContent), m);
+      parent.normalize();
+    });
+    hitStats.classList.remove('show');
+  }
+
+  function highlight(el, term){
+    if(!term) return;
+    const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null);
+    const nodes = [];
+    while(walker.nextNode()) nodes.push(walker.currentNode);
+    const re = new RegExp(term.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'), 'gi');
+    nodes.forEach(node=>{
+      const text = node.nodeValue;
+      if(!re.test(text)) return;
+      re.lastIndex = 0;
+      const frag = document.createDocumentFragment();
+      let last = 0, m;
+      while((m = re.exec(text))){
+        frag.appendChild(document.createTextNode(text.slice(last, m.index)));
+        const mark = document.createElement('mark');
+        mark.textContent = m[0];
+        frag.appendChild(mark);
+        last = m.index + m[0].length;
       }
-      body.appendChild(botMsg);
-      body.scrollTop = body.scrollHeight;
-    }, 500);
-  };
+      frag.appendChild(document.createTextNode(text.slice(last)));
+      node.parentNode.replaceChild(frag, node);
+    });
+  }
+
+  // ---------- ИИ-поиск ----------
+  search.addEventListener('input', ()=>{
+    const q = search.value.trim().toLowerCase();
+    clearHits();
+    if(!q){ return; }
+
+    const doc = document.getElementById('doc-' + currentDoc);
+    const articles = doc.querySelectorAll('.article');
+    let hits = 0;
+    const terms = q.split(/\s+/).filter(Boolean);
+
+    articles.forEach(art=>{
+      const num = (art.querySelector('.art-num')?.textContent || '').toLowerCase();
+      const title = (art.querySelector('.art-title')?.textContent || '').toLowerCase();
+      const body = (art.querySelector('.art-body')?.textContent || '').toLowerCase();
+      const dataSearch = (art.dataset.search || '').toLowerCase();
+      const haystack = num + ' ' + title + ' ' + body + ' ' + dataSearch;
+
+      // Условие: все термы должны встречаться (И-поиск), либо точное совпадение номера
+      let match = terms.every(t => haystack.includes(t));
+      // Бонус: точное совпадение номера статьи
+      if(!match && num === q) match = true;
+      // Бонус: номер статьи начинается с запроса (например "37" → 37.1, 37.2)
+      if(!match && /^\d+(\.\d+)*$/.test(q) && num.startsWith(q)) match = true;
+
+      if(match){
+        hits++;
+        art.classList.add('hit');
+        terms.forEach(t => highlight(art, t));
+      }
+    });
+
+    if(hits > 0){
+      hitStats.innerHTML = `Найдено: <b>${hits}</b> ${plural(hits,'статья','статьи','статей')} в разделе «${docTitle(currentDoc)}»`;
+      hitStats.classList.add('show');
+    } else {
+      hitStats.innerHTML = `По запросу «${escapeHtml(search.value)}» ничего не найдено в разделе «${docTitle(currentDoc)}».<br><small>Попробуйте номер статьи (5.1, 37.1), название (кража, побег) или ключевое слово (штраф, арест).</small>`;
+      hitStats.classList.add('show');
+    }
+  });
+
+  function docTitle(id){
+    return id === 'ustav' ? 'Устав ФСИН' : id === 'koap' ? 'КоАП' : 'УК РФ';
+  }
+  function plural(n, one, few, many){
+    const m10 = n % 10, m100 = n % 100;
+    if(m10 === 1 && m100 !== 11) return one;
+    if(m10 >= 2 && m10 <= 4 && (m100 < 10 || m100 >= 20)) return few;
+    return many;
+  }
+  function escapeHtml(s){
+    return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+
+  // ---------- Enter — прокрутить к первому результату ----------
+  search.addEventListener('keydown', (e)=>{
+    if(e.key === 'Enter'){
+      const first = document.querySelector('.article.hit');
+      if(first) first.scrollIntoView({behavior:'smooth', block:'center'});
+    }
+  });
+
+  // ---------- Горячая клавиша "/" ----------
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === '/' && document.activeElement !== search){
+      e.preventDefault();
+      search.focus();
+    }
+  });
+})();
 </script>
 </body>
 </html>
