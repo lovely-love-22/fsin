@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RMRP | Калькулятор баллов УФСИН</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root { --bg: #05080a; --card: #0b1116; --border: #16222d; --accent: #3b82f6; --text: #c9d1d9; --dim: #8b949e; --red: #e74c3c; }
+body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; padding: 40px 20px; margin: 0; }
+.container { max-width: 1100px; margin: 0 auto; }
+header { border-bottom: 1px solid var(--border); padding-bottom: 20px; margin-bottom: 40px; display: flex; justify-content: space-between; align-items: center; }
+.logo { font-size: 20px; font-weight: 900; font-family: 'JetBrains Mono', monospace; color: #fff; text-decoration: none; }
+.logo span { color: var(--accent); }
+nav { display: flex; gap: 15px; font-family: 'JetBrains Mono', monospace; font-size: 13px; }
+nav a { color: var(--dim); text-decoration: none; padding: 6px 12px; border-radius: 6px; }
+nav a.active { background: var(--accent); color: #000; font-weight: bold; }
+h1 { font-family: 'JetBrains Mono', monospace; color: #fff; margin-bottom: 20px; font-size: 24px; }
+.tabs { display: flex; gap: 10px; margin-bottom: 24px; flex-wrap: wrap; }
+.tab { padding: 12px 24px; background: var(--card); border: 1px solid var(--border); color: var(--dim); border-radius: 8px; cursor: pointer; font-weight: 700; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; font-size: 13px; transition: 0.2s; }
+.tab.active { background: var(--accent); color: #000; border-color: var(--accent); }
+.panel { display: none; }
+.panel.active { display: block; animation: fadeIn 0.3s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: none; } }
+.grid-2 { display: grid; grid-template-columns: 1.3fr 1fr; gap: 20px; align-items: start; }
+@media(max-width: 768px) { .grid-2 { grid-template-columns: 1fr; } }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; }
+h3 { font-family: 'JetBrains Mono', monospace; color: #fff; margin-bottom: 20px; border-bottom: 1px solid var(--border); padding-bottom: 15px; display: flex; justify-content: space-between; align-items: center; gap: 10px; font-size: 16px; text-transform: uppercase; }
+.task { padding: 12px; border: 1px solid var(--border); border-radius: 8px; margin-bottom: 10px; background: rgba(0,0,0,0.2); transition: 0.2s; }
+.task.active { background: rgba(59, 130, 246, 0.08); border-color: var(--accent); }
+.task-head { display: flex; justify-content: space-between; cursor: pointer; align-items: center; gap: 10px; }
+.task-head input[type="checkbox"] { margin-right: 12px; accent-color: var(--accent); width: 18px; height: 18px; cursor: pointer; }
+.task-head span { flex: 1; font-size: 14.5px; display:flex; align-items:center; gap:8px;}
+.task input[type="number"] { width: 60px; background: #000; border: 1px solid var(--border); color: #fff; text-align: center; border-radius: 6px; padding: 6px; outline: none; font-family: 'JetBrains Mono', monospace; }
+.task-body { margin-top: 12px; display: none; padding-top: 12px; border-top: 1px dashed var(--border); max-height: 300px; overflow-y: auto; }
+.task.active .task-body { display: block; }
+.manual-pts-input { width: 80px; background: #000; border: 1px solid var(--border); color: var(--accent); text-align: center; border-radius: 6px; padding: 6px; outline: none; font-weight: bold; }
+.task-link { width: 100%; padding: 10px; background: #000; border: 1px solid var(--border); color: var(--accent); border-radius: 6px; font-size: 13px; outline: none; box-sizing: border-box; transition: 0.2s; margin-bottom: 5px; }
+.task-link:focus { border-color: var(--accent); }
+.promo-box { background: rgba(0,0,0,0.3); border: 1px solid var(--border); border-radius: 8px; padding: 16px; margin-bottom: 20px; }
+.promo-row { display: flex; gap: 10px; margin-bottom: 12px; }
+.promo-row select { flex: 1; padding: 10px; background: #000; border: 1px solid var(--border); color: #fff; border-radius: 6px; outline: none; }
+.promo-status { margin-top: 16px; padding: 12px; border-radius: 6px; font-size: 13px; text-align: center; border: 1px dashed; }
+.promo-status.ok { background: rgba(46, 204, 113, 0.1); border-color: #2ecc71; color: #2ecc71; }
+.promo-status.fail { background: rgba(231, 76, 60, 0.1); border-color: var(--red); color: var(--red); }
+.total-box { display: flex; justify-content: space-between; background: rgba(59, 130, 246, 0.1); border: 1px solid var(--accent); padding: 20px; border-radius: 8px; margin-top: 24px; font-weight: bold; font-size: 18px; }
+.btn { background: var(--accent); color: #000; border: none; padding: 14px; border-radius: 8px; font-weight: 800; cursor: pointer; width: 100%; margin-top: 16px; font-family: 'Inter', sans-serif; transition: 0.2s; text-transform: uppercase; font-size: 14px; }
+.btn:hover { opacity: 0.9; transform: translateY(-2px); }
+.btn-blue { background: #3b82f6; color: #fff; }
+.btn-purple { background: #a855f7; color: #fff; }
+.btn-orange { background: #f39c12; color: #fff; }
+.btn-save { background: rgba(59, 130, 246, 0.2); color: var(--accent); border: 1px solid var(--accent); }
+.btn-save:hover { background: var(--accent); color: #000; }
+.form-group { margin-bottom: 18px; }
+.form-group label { display: block; font-size: 13px; color: var(--dim); margin-bottom: 8px; font-weight: 600; text-transform: uppercase; }
+.form-group input, .form-group select { width: 100%; padding: 12px; background: #000; border: 1px solid var(--border); color: #fff; border-radius: 8px; box-sizing: border-box; outline: none; font-size: 14px; }
+.form-group input:focus, .form-group select:focus { border-color: var(--accent); }
+.output { background: #000; border: 1px solid var(--border); padding: 20px; border-radius: 8px; font-family: 'JetBrains Mono', monospace; font-size: 13.5px; white-space: pre-wrap; margin-top: 20px; max-height: 500px; overflow-y: auto; line-height: 1.6; }
+.history-box { margin-top: 24px; background: rgba(0,0,0,0.2); border: 1px dashed var(--border); border-radius: 8px; padding: 16px; }
+.history-list { display: flex; flex-direction: column; gap: 8px; max-height: 300px; overflow-y: auto; }
+.history-item { display: flex; justify-content: space-between; align-items: center; background: var(--card); padding: 10px 14px; border: 1px solid var(--border); border-radius: 6px; font-size: 13px; }
+.history-item-total { font-family: 'JetBrains Mono', monospace; color: var(--accent); font-weight: bold; }
+.history-load-btn { background: rgba(59, 130, 246, 0.1); color: var(--accent); border: 1px solid var(--accent); padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: bold; }
+.btn-clear-history { background: rgba(231, 76, 60, 0.1); color: var(--red); border: 1px solid var(--red); padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: bold; cursor: pointer; }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="logo">⚖️ RMRP <span>ФСИН</span></a>
+  <nav>
+    <a href="index.html">Главная</a>
+    <a href="federation-charter.html">Устав УФСИН</a>
+    <a href="federation-rules.html">Регламенты и ШИЗО</a>
+    <a href="audit.html" class="active">Калькулятор</a>
+    <a href="profile.html">Профиль</a>
+  </nav>
+</header>
+
+<div class="container">
+  <h1>🧮 Калькулятор УФСИН</h1>
+  
+  <div class="tabs">
+    <div class="tab active" onclick="switchTab('calc')">🧮 Баллы</div>
+    <div class="tab" onclick="switchTab('promo')">📝 Рапорт на повышение</div>
+    <div class="tab" onclick="switchTab('weekly')">📅 Еженедельный отчет</div>
+  </div>
+
+  <!-- КАЛЬКУЛЯТОР -->
+  <div class="panel active" id="panel-calc">
+    <div class="grid-2">
+      <div class="card">
+        <h3>📋 Выберите задания</h3>
+        <div id="tasksList"></div>
+      </div>
+      <div class="card">
+        <h3>💰 Итог</h3>
+        
+        <div class="promo-box">
+          <div class="promo-row">
+            <select id="currentRank" onchange="updatePromoStatus()">
+              <option value="Рядовой">Рядовой</option>
+              <option value="Младший сержант">Младший сержант</option>
+              <option value="Сержант">Сержант</option>
+              <option value="Старший сержант">Старший сержант</option>
+              <option value="Старшина">Старшина</option>
+              <option value="Прапорщик">Прапорщик</option>
+              <option value="Лейтенант">Лейтенант</option>
+              <option value="Капитан">Капитан</option>
+              <option value="Майор">Майор</option>
+            </select>
+            <select id="nextRank" onchange="updatePromoStatus()">
+              <option value="Младший сержант">Младший сержант (400 б.)</option>
+              <option value="Сержант">Сержант (550 б.)</option>
+              <option value="Старший сержант">Старший сержант (700 б.)</option>
+              <option value="Старшина">Старшина (850 б.)</option>
+              <option value="Прапорщик">Прапорщик (1000 б.)</option>
+              <option value="Лейтенант">Лейтенант (1200 б.)</option>
+              <option value="Капитан">Капитан (1400 б.)</option>
+            </select>
+          </div>
+          <div class="promo-status ok" id="promoStatus">Выберите звание...</div>
+        </div>
+
+        <div class="form-group">
+          <label>Остаток с прошлого раза</label>
+          <input type="number" id="prevPoints" value="0" oninput="calcTotal()">
+        </div>
+        <div class="total-box">
+          <span>Всего:</span>
+          <span id="totalDisplay" style="color:var(--accent)">0</span>
+        </div>
+        
+        <button class="btn btn-save" onclick="saveCalcSession()">💾 Сохранить расчет</button>
+        <button class="btn btn-blue" onclick="copyPoints()">📋 Скопировать баллы</button>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top: 20px;">
+      <h3>📁 Ранее сохраненное <button class="btn-clear-history" onclick="clearHistory()">🗑 Очистить</button></h3>
+      <div class="history-box">
+        <div class="history-list" id="historyList"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- РАПОРТ -->
+  <div class="panel" id="panel-promo">
+    <div class="grid-2">
+      <div class="card">
+        <h3>✍️ Данные рапорта</h3>
+        <div class="form-group"><label>ФИО / Позывной</label><input type="text" id="rpName" value="Иванов Иван" oninput="generatePromo()"></div>
+        <div class="form-group"><label>Static ID</label><input type="text" id="rpStatic" value="123-456" oninput="generatePromo()"></div>
+        <div class="form-group">
+          <label>Текущее звание</label>
+          <select id="rpRank" onchange="generatePromo()">
+            <option value="Рядовой">Рядовой</option>
+            <option value="Сержант">Сержант</option>
+            <option value="Старшина">Старшина</option>
+            <option value="Прапорщик">Прапорщик</option>
+            <option value="Лейтенант">Лейтенант</option>
+            <option value="Капитан">Капитан</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Желаемое звание (с ролью)</label>
+          <select id="rpNext" onchange="generatePromo()">
+            <option value="Сержант">Сержант</option>
+            <option value="Старшина">Старшина</option>
+            <option value="Прапорщик">Прапорщик</option>
+            <option value="Лейтенант">Лейтенант</option>
+            <option value="Капитан">Капитан</option>
+          </select>
+        </div>
+        <button class="btn btn-purple" onclick="generatePromo()">🪄 Сгенерировать рапорт</button>
+      </div>
+      
+      <div class="card">
+        <h3>📄 Предпросмотр рапорта</h3>
+        <div class="output" id="promoOutput">Нажмите "Сгенерировать рапорт"...</div>
+        <button class="btn btn-save" style="margin-top: 15px;" onclick="saveTextReport('promo')">💾 Сохранить рапорт</button>
+        <button class="btn btn-blue" style="margin-top: 15px;" onclick="copyOutput('promoOutput')">📋 Скопировать</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ОТЧЕТ -->
+  <div class="panel" id="panel-weekly">
+    <div class="grid-2">
+      <div class="card">
+        <h3>📅 Данные отчета</h3>
+        <div class="form-group"><label>ФИО / Позывной</label><input type="text" id="weeklyName" value="Иванов Иван" oninput="generateWeekly()"></div>
+        <div class="form-group"><label>Static ID</label><input type="text" id="weeklyStatic" value="123-456" oninput="generateWeekly()"></div>
+        <button class="btn btn-orange" onclick="generateWeekly()">🪄 Сгенерировать отчет</button>
+      </div>
+      
+      <div class="card">
+        <h3>📄 Предпросмотр отчета</h3>
+        <div class="output" id="weeklyOutput">Нажмите "Сгенерировать отчет"...</div>
+        <button class="btn btn-save" style="margin-top: 15px;" onclick="saveTextReport('weekly')">💾 Сохранить отчет</button>
+        <button class="btn btn-blue" style="margin-top: 15px;" onclick="copyOutput('weeklyOutput')">📋 Скопировать</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Базовые данные для калькулятора
+  const REPORT_CHANNEL_ID = "123456789012345678"; 
+  const CHANNEL_TAG = `<#${REPORT_CHANNEL_ID}>`;
+  const ROLE_HEAD = "<@&883437514419998721>"; 
+  const ROLE_DEPUTY = "<@&1279194726775652445>"; 
+
+  const RANK_COSTS = {
+    "Младший сержант": 400, "Сержант": 550, "Старший сержант": 700,
+    "Старшина": 850, "Прапорщик": 1000, "Лейтенант": 1200, "Капитан": 1400
+  };
+
+  const TASKS = [
+    { id:'kpp', icon:'🚧', label:'Служба на КПП', pts:30, cat:'Служба' },
+    { id:'patrol', icon:'👁️', label:'Патрулирование территории', pts:40, cat:'Служба' },
+    { id:'search', icon:'🔍', label:'Обыск камер', pts:50, cat:'Обыски' },
+    { id:'escort', icon:'⛓️', label:'Конвоирование', pts:35, cat:'Конвой' },
+    { id:'report', icon:'📝', label:'Проверка отчета', pts:15, cat:'Отчеты' },
+    { id:'thanks', icon:'🎖️', label:'Благодарность', pts:0, cat:'Благодарности', isManual:true }
+  ];
+
+  let selected = {};
+
+  window.onload = function() {
+    loadFromStorage();
+    render();
+    renderHistory();
+  };
+
+  function saveToStorage() {
+    let data = { selected: selected, prev: document.getElementById('prevPoints').value, currRank: document.getElementById('currentRank').value, nextRank: document.getElementById('nextRank').value };
+    localStorage.setItem('rmrp_calc_autosave', JSON.stringify(data));
+  }
+
+  function loadFromStorage() {
+    let raw = localStorage.getItem('rmrp_calc_autosave');
+    if (raw) {
+      try {
+        let data = JSON.parse(raw);
+        if (data.selected) selected = data.selected;
+        if (data.prev) document.getElementById('prevPoints').value = data.prev;
+        if (data.currRank) document.getElementById('currentRank').value = data.currRank;
+        if (data.nextRank) document.getElementById('nextRank').value = data.nextRank;
+      } catch(e) {}
+    }
+  }
+
+  function render() {
+    document.getElementById('tasksList').innerHTML = TASKS.map(t => {
+      let isChecked = selected[t.id] ? selected[t.id].checked : false;
+      let qty = selected[t.id] ? selected[t.id].qty : 1;
+      let links = selected[t.id] && selected[t.id].links ? selected[t.id].links : [''];
+      let manualPts = selected[t.id] && selected[t.id].manualPts ? selected[t.id].manualPts : '';
+      
+      let linksHtml = '';
+      for (let i = 0; i < qty; i++) {
+        let val = links[i] || '';
+        linksHtml += `<input type="text" class="task-link" placeholder="🔗 Ссылка #${i+1}..." value="${val}" oninput="setLink('${t.id}', ${i}, this.value)">`;
+      }
+      
+      let ptsHtml = t.isManual 
+        ? `<input type="number" class="manual-pts-input" placeholder="Баллы" value="${manualPts}" onclick="event.stopPropagation()" onchange="setManualPts('${t.id}', this.value)">` 
+        : `<span style="color:#586069; font-size:12px;">(${t.pts} б.)</span>`;
+
+      return `
+        <div class="task ${isChecked ? 'active' : ''}">
+          <div class="task-head" onclick="toggle('${t.id}')">
+            <div style="display:flex; align-items:center; width:100%;">
+              <input type="checkbox" ${isChecked ? 'checked' : ''} onclick="event.stopPropagation(); toggle('${t.id}')">
+              <span style="display:flex; align-items:center; gap:8px;">
+                <span style="font-size:16px;">${t.icon}</span> <span style="font-weight: 600;">${t.label}</span> ${ptsHtml}
+              </span>
+            </div>
+            ${isChecked ? `<input type="number" value="${qty}" min="1" max="100" onclick="event.stopPropagation()" onchange="setQty('${t.id}', this.value)">` : ''}
+          </div>
+          <div class="task-body"><div class="links-container">${linksHtml}</div></div>
+        </div>
+      `;
+    }).join('');
+    calcTotal();
+  }
+
+  function toggle(id) {
+    if (!selected[id]) selected[id] = { checked: false, qty: 1, links: [''], manualPts: '' };
+    selected[id].checked = !selected[id].checked;
+    render(); saveToStorage();
+  }
+
+  function setQty(id, val) {
+    let q = parseInt(val) || 1;
+    if (q > 100) q = 100;
+    if (selected[id]) {
+      selected[id].qty = q;
+      if (!selected[id].links) selected[id].links = [];
+      while (selected[id].links.length < q) selected[id].links.push('');
+    }
+    render(); saveToStorage();
+  }
+
+  function setLink(id, index, val) {
+    if (selected[id]) {
+      if (!selected[id].links) selected[id].links = [];
+      selected[id].links[index] = val.trim();
+      saveToStorage();
+    }
+  }
+
+  function setManualPts(id, val) {
+    if (selected[id]) {
+      selected[id].manualPts = parseInt(val) || 0;
+      calcTotal(); saveToStorage();
+    }
+  }
+
+  function getSum() {
+    let total = 0, details = [];
+    for (let id in selected) {
+      if (selected[id].checked) {
+        let task = TASKS.find(t => t.id === id);
+        let ptsPerOne = task.isManual ? (selected[id].manualPts || 0) : task.pts;
+        let pts = ptsPerOne * selected[id].qty;
+        total += pts;
+        let validLinks = (selected[id].links || []).filter(l => l && l.trim() !== '');
+        details.push({ cat: task.cat, pts: pts, qty: selected[id].qty, name: task.label, links: validLinks, hasPts: ptsPerOne > 0 });
+      }
+    }
+    return { total, details };
+  }
+
+  function calcTotal() {
+    let res = getSum();
+    let prev = parseInt(document.getElementById('prevPoints').value) || 0;
+    let total = prev + res.total;
+    document.getElementById('totalDisplay').textContent = total;
+    updatePromoStatus(total);
+    saveToStorage();
+  }
+
+  function updatePromoStatus(currentTotal) {
+    let targetRank = document.getElementById('nextRank').value;
+    let required = RANK_COSTS[targetRank] || 0;
+    if (typeof currentTotal !== 'number') currentTotal = parseInt(document.getElementById('totalDisplay').textContent) || 0;
+    let el = document.getElementById('promoStatus');
+
+    if (currentTotal >= required) {
+      let over = currentTotal - required;
+      el.className = 'promo-status ok';
+      el.innerHTML = `✅ <b>Достаточно баллов!</b><br>Нужно: ${required} б. | У вас: ${currentTotal} б.<br><span style="font-size:12px;">Перевыполнено на ${over} баллов!</span>`;
+    } else {
+      let need = required - currentTotal;
+      el.className = 'promo-status fail';
+      el.innerHTML = `❌ <b>Недостаточно баллов!</b><br>Нужно: ${required} б. | У вас: ${currentTotal} б.<br><span style="font-size:12px;">Не хватает ${need} баллов!</span>`;
+    }
+  }
+
+  function saveCalcSession() {
+    let res = getSum();
+    if (res.details.length === 0) { alert('Нет отмеченных заданий!'); return; }
+    let prev = parseInt(document.getElementById('prevPoints').value) || 0;
+    let history = JSON.parse(localStorage.getItem('rmrp_calc_history') || '[]');
+    history.unshift({
+      id: Date.now(), date: new Date().toLocaleString('ru-RU'), total: prev + res.total,
+      data: { selected: JSON.parse(JSON.stringify(selected)), prev: prev, currRank: document.getElementById('currentRank').value, nextRank: document.getElementById('nextRank').value }
+    });
+    if (history.length > 10) history = history.slice(0, 10);
+    localStorage.setItem('rmrp_calc_history', JSON.stringify(history));
+    renderHistory();
+    alert('Расчет сохранен!');
+  }
+
+  function renderHistory() {
+    let history = JSON.parse(localStorage.getItem('rmrp_calc_history') || '[]');
+    let list = document.getElementById('historyList');
+    if (history.length === 0) { list.innerHTML = '<div style="color:var(--dim);font-size:13px;text-align:center;padding:10px">История пуста</div>'; return; }
+    list.innerHTML = history.map(item => `
+      <div class="history-item">
+        <div><div class="history-item-total">${item.total} баллов</div><div style="font-size:11px;color:var(--dim)">${item.date}</div></div>
+        <button class="history-load-btn" onclick="loadHistoryItem(${item.id})">📥 Загрузить</button>
+      </div>
+    `).join('');
+  }
+
+  function loadHistoryItem(id) {
+    let history = JSON.parse(localStorage.getItem('rmrp_calc_history') || '[]');
+    let item = history.find(h => h.id === id);
+    if (!item || !confirm('Загрузить расчет?')) return;
+    selected = item.data.selected;
+    document.getElementById('prevPoints').value = item.data.prev;
+    document.getElementById('currentRank').value = item.data.currRank;
+    document.getElementById('nextRank').value = item.data.nextRank;
+    render(); saveToStorage();
+  }
+
+  function clearHistory() {
+    if (!confirm('Очистить всю историю?')) return;
+    localStorage.removeItem('rmrp_calc_history');
+    renderHistory();
+  }
+
+  function switchTab(tab) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    if (tab === 'calc') { document.querySelectorAll('.tab')[0].classList.add('active'); document.getElementById('panel-calc').classList.add('active'); }
+    else if (tab === 'promo') { document.querySelectorAll('.tab')[1].classList.add('active'); document.getElementById('panel-promo').classList.add('active'); generatePromo(); }
+    else if (tab === 'weekly') { document.querySelectorAll('.tab')[2].classList.add('active'); document.getElementById('panel-weekly').classList.add('active'); generateWeekly(); }
+  }
+
+  function copyPoints() {
+    let res = getSum();
+    let prev = parseInt(document.getElementById('prevPoints').value) || 0;
+    let text = `=== ПОДСЧЕТ БАЛЛОВ ===\nОстаток: ${prev} б.\n\n`;
+    res.details.forEach(d => { text += `• ${d.name} (x${d.qty}) = ${d.pts} б.\n`; d.links.forEach(l => text += `  🔗 ${l}\n`); });
+    text += `\nИТОГО: ${prev + res.total} баллов`;
+    navigator.clipboard.writeText(text); alert('Баллы скопированы!');
+  }
+
+  function copyOutput(id) { navigator.clipboard.writeText(document.getElementById(id).textContent); alert('Скопировано!'); }
+
+  function generatePromo() {
+    let res = getSum();
+    let workLines = [];
+    res.details.forEach(d => {
+      if (d.pts > 0) workLines.push(`• ${d.name} - ${d.pts} баллов`);
+      d.links.forEach(l => workLines.push(`  🔗 ${l}`));
+    });
+    let name = document.getElementById('rpName').value || 'Иванов Иван';
+    let sId = document.getElementById('rpStatic').value || '123-456';
+    let rank = document.getElementById('rpRank').value;
+    let nextRole = document.getElementById('rpNext').value;
+    let prev = parseInt(document.getElementById('prevPoints').value) || 0;
+    
+    let lines = [
+      'Рапорт на повышение', `От: ${name} | ${sId}`, 'Кому: Начальнику УФСИН',
+      `Я, ${rank} ${name}, прошу рассмотреть мой рапорт и присвоить звание ${nextRole}.`,
+      'Проделанная работа:', workLines.join('\n') || 'Нет работ', '', `Сумма: ${res.total} б.`, `Остаток: ${prev} б.`
+    ];
+    document.getElementById('promoOutput').textContent = lines.join('\n');
+  }
+
+  function generateWeekly() {
+    let res = getSum();
+    let grouped = {};
+    res.details.forEach(d => {
+      if (!grouped[d.cat]) grouped[d.cat] = [];
+      d.links.forEach(l => grouped[d.cat].push(l));
+      if (d.links.length === 0) for(let i=0; i<d.qty; i++) grouped[d.cat].push('[нет ссылки]');
+    });
+    let name = document.getElementById('weeklyName').value || 'Иванов Иван';
+    let sId = document.getElementById('weeklyStatic').value || '123-456';
+    let lines = [`Я ${name} ${sId} предоставляю отчет:`];
+    for (let cat in grouped) {
+      lines.push(`**${cat}:**`);
+      grouped[cat].forEach(l => lines.push(`${CHANNEL_TAG} > ${cat} > ${l}`));
+      lines.push('');
+    }
+    if (Object.keys(grouped).length > 0) lines.push(`${ROLE_HEAD} Начальник УФСИН`);
+    document.getElementById('weeklyOutput').textContent = lines.join('\n');
+  }
+
+  function saveTextReport(type) {
+    let text = document.getElementById(type + 'Output').textContent;
+    if (!text || text.includes('Нажмите')) return alert('Сначала сгенерируйте отчет!');
+    let history = JSON.parse(localStorage.getItem('rmrp_text_history') || '[]');
+    history.unshift({ id: Date.now(), type: type === 'promo' ? 'Рапорт' : 'Отчет', date: new Date().toLocaleString('ru-RU'), text: text });
+    if (history.length > 20) history = history.slice(0, 20);
+    localStorage.setItem('rmrp_text_history', JSON.stringify(history));
+    alert('Сохранено в историю!');
+  }
+</script>
+</body>
+</html>
