@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#05080a">
+<title>RMRP | УФСИН РФ</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚖️</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root { 
+  --bg: #05080a; 
+  --card: #0b1116; 
+  --border: #16222d; 
+  --accent: #3b82f6; /* Синий ФСИН */
+  --text: #c9d1d9; 
+  --dim: #8b949e; 
+}
+body { 
+  background-color: var(--bg); 
+  background-image: radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.08), transparent 50%), linear-gradient(rgba(5, 8, 10, 0.95), rgba(5, 8, 10, 0.98));
+  background-attachment: fixed; color: var(--text); font-family: 'Inter', sans-serif; margin: 0; padding: 0;
+  min-height: 100vh;
+}
+header { border-bottom: 1px solid var(--border); padding: 20px; display: flex; justify-content: space-between; align-items: center; background: rgba(5, 8, 10, 0.8); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100; }
+.logo { font-size: 20px; font-weight: 900; font-family: 'JetBrains Mono', monospace; color: #fff; text-decoration: none; display: flex; align-items: center; gap: 8px; }
+.logo span { color: var(--accent); }
+nav { display: flex; gap: 15px; font-family: 'JetBrains Mono', monospace; font-size: 13px; }
+nav a { color: var(--dim); text-decoration: none; padding: 6px 12px; transition: 0.2s; border-radius: 6px; }
+nav a:hover, nav a.active { background: rgba(59, 130, 246, 0.1); color: var(--accent); }
+nav a.active { background: var(--accent); color: #000; font-weight: bold; }
+.container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+.hero { text-align: center; margin-bottom: 50px; padding: 40px 20px; background: radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.1), transparent 70%); border-radius: 20px; border: 1px solid var(--border); }
+.hero h1 { font-family: 'JetBrains Mono', monospace; font-size: 42px; color: #fff; margin: 0 0 10px 0; }
+.hero p { color: var(--dim); font-size: 16px; max-width: 600px; margin: 0 auto; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; color: inherit; transition: 0.3s; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+.card:hover { transform: translateY(-4px); border-color: var(--accent); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+.card::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--accent); opacity: 0; transition: 0.3s; }
+.card:hover::before { opacity: 1; }
+.card-icon { font-size: 32px; margin-bottom: 16px; }
+.card-title { font-family: 'JetBrains Mono', monospace; font-size: 18px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+.card-desc { font-size: 14px; color: var(--dim); line-height: 1.5; }
+
+/* ИИ-ПОМОЩНИК */
+#aiBtn { color: #a855f7; font-weight: 900; cursor: pointer; }
+.ai-dropdown { position: absolute; top: 70px; right: 20px; width: 350px; background: #0b1116; border: 1px solid #a855f7; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.8); display: none; flex-direction: column; z-index: 999; overflow: hidden; }
+.ai-dropdown.active { display: flex; animation: dropIn 0.3s ease; }
+@keyframes dropIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+.ai-chat-head { padding: 12px 16px; border-bottom: 1px solid #1a242b; background: #0f1419; display: flex; justify-content: space-between; align-items: center; font-family: monospace; font-size: 13px; font-weight: bold; color: #fff; }
+.ai-chat-body { max-height: 300px; overflow-y: auto; padding: 12px; display: flex; flex-direction: column; gap: 8px; background: #05080a; }
+.ai-msg { max-width: 85%; padding: 8px 12px; border-radius: 10px; font-size: 12.5px; line-height: 1.4; word-wrap: break-word; }
+.ai-msg.bot { background: rgba(168, 85, 247, 0.1); border: 1px solid rgba(168, 85, 247, 0.2); color: #c9d1d9; align-self: flex-start; }
+.ai-msg.user { background: #a855f7; color: #fff; align-self: flex-end; }
+.ai-msg a { color: #3b82f6; font-weight: bold; text-decoration: none; }
+.ai-chat-input-wrap { padding: 10px; border-top: 1px solid #1a242b; display: flex; gap: 8px; background: #0f1419; }
+.ai-chat-input { flex: 1; padding: 8px 12px; border-radius: 6px; background: #000; border: 1px solid #1a242b; color: #fff; outline: none; font-family: inherit; }
+.ai-chat-send { padding: 0 12px; border-radius: 6px; background: #a855f7; color: #fff; font-weight: bold; border: none; cursor: pointer; }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="logo"><span>⚖️</span> RMRP <span>ФСИН</span></a>
+  <nav>
+    <a href="index.html" class="active">Главная</a>
+    <a href="federation-charter.html">Устав УФСИН</a>
+    <a href="federation-rules.html">Регламенты и ШИЗО</a>
+    <a href="uk.html">УК РФ</a>
+    <a href="koap.html">КоАП РФ</a>
+    <a href="process.html">Процессуальный</a>
+    <a href="audit.html">Калькулятор баллов</a>
+    <a href="profile.html">Профиль</a>
+    <a href="#" id="aiBtn">🤖 ИИ-Юрист</a>
+  </nav>
+</header>
+
+<!-- ИИ-ОКНО -->
+<div class="ai-dropdown" id="aiDropdown">
+  <div class="ai-chat-head">
+    <span><span style="color:#a855f7">●</span> Юрист ФСИН (ИИ)</span>
+    <span style="font-size:10px; color:#8b949e;">СПРАВКА</span>
+  </div>
+  <div class="ai-chat-body" id="aiChatBody">
+    <div class="ai-msg bot">Приветствую. Спроси меня о статье (напр: "срок за кражу").</div>
+  </div>
+  <div class="ai-chat-input-wrap">
+    <input type="text" class="ai-chat-input" id="aiChatInput" placeholder="Введите вопрос..." onkeypress="if(event.key==='Enter')window.sendAI()">
+    <button class="ai-chat-send" onclick="window.sendAI()">➤</button>
+  </div>
+</div>
+
+<div class="container">
+  <div class="hero">
+    <h1>УФСИН РОССИИ</h1>
+    <p>Информационный портал Управления Федеральной службы исполнения наказаний по Рублевскому федеральному округу.</p>
+  </div>
+
+  <div class="grid">
+    <a href="federation-charter.html" class="card">
+      <div class="card-icon">📕</div>
+      <div class="card-title">Устав ИК-7 УФСИН</div>
+      <div class="card-desc">Порядок службы, иерархия званий, права и обязанности сотрудников.</div>
+    </a>
+    <a href="federation-rules.html" class="card">
+      <div class="card-icon">🚨</div>
+      <div class="card-title">Регламенты и ШИЗО</div>
+      <div class="card-desc">Правила допуска на территорию, личный обыск (Ст. 19.1 ПК), содержание в ШИЗО.</div>
+    </a>
+    <a href="audit.html" class="card">
+      <div class="card-icon">🧮</div>
+      <div class="card-title">Калькулятор баллов</div>
+      <div class="card-desc">Подсчет баллов, генератор рапортов на повышение и еженедельных отчетов.</div>
+    </a>
+    <a href="profile.html" class="card">
+      <div class="card-icon">👤</div>
+      <div class="card-title">Личный кабинет</div>
+      <div class="card-desc">Профиль сотрудника, управление учетной записью и должностями.</div>
+    </a>
+    <a href="uk.html" class="card">
+      <div class="card-icon">⚔️</div>
+      <div class="card-title">Уголовный кодекс</div>
+      <div class="card-desc">Преступления и наказания (99 статей).</div>
+    </a>
+    <a href="koap.html" class="card">
+      <div class="card-icon">📋</div>
+      <div class="card-title">КоАП РФ</div>
+      <div class="card-desc">Административные правонарушения.</div>
+    </a>
+  </div>
+</div>
+
+<script>
+  var aiBtn = document.getElementById('aiBtn');
+  var aiDropdown = document.getElementById('aiDropdown');
+
+  aiBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    aiDropdown.classList.toggle('active');
+    if (aiDropdown.classList.contains('active')) {
+      document.getElementById('aiChatInput').focus();
+    }
+  });
+
+  document.addEventListener('click', function(e) {
+    if (!aiDropdown.contains(e.target) && !aiBtn.contains(e.target)) {
+      aiDropdown.classList.remove('active');
+    }
+  });
+
+  window.sendAI = function() {
+    var input = document.getElementById('aiChatInput');
+    var body = document.getElementById('aiChatBody');
+    var query = input.value.toLowerCase().trim();
+    if (!query) return;
+
+    var userMsg = document.createElement('div');
+    userMsg.className = 'ai-msg user';
+    userMsg.textContent = input.value;
+    body.appendChild(userMsg);
+    input.value = '';
+    body.scrollTop = body.scrollHeight;
+
+    setTimeout(function() {
+      var bestMatch = null;
+      var maxScore = 0;
+      var KB = [
+        { keys: ['убийство', 'убил'], title: 'Статья 37 УК РФ', ans: 'Убийство. 7 лет лишения свободы.', url: 'uk.html#art-37' },
+        { keys: ['кража', 'украл'], title: 'Статья 44 УК РФ', ans: 'Кража. Штраф 30.000 или 3 года.', url: 'uk.html#art-44' },
+        { keys: ['грабеж', 'ограбил'], title: 'Статья 46 УК РФ', ans: 'Грабеж. 4 года лишения свободы.', url: 'uk.html#art-46' },
+        { keys: ['разбой', 'напал'], title: 'Статья 47 УК РФ', ans: 'Разбой. 5 лет лишения свободы.', url: 'uk.html#art-47' },
+        { keys: ['адвокат'], title: 'Статья 9 ПК РФ', ans: 'Ожидание адвоката 5 минут.', url: 'process.html' },
+        { keys: ['задержание'], title: 'Статья 6 ПК РФ', ans: 'Задержание не более 60 минут.', url: 'process.html' },
+        { keys: ['обыск'], title: 'Статья 19.1 ПК РФ', ans: 'Личный обыск без постановления при задержании.', url: 'federation-rules.html' },
+        { keys: ['шизо', 'изолятор'], title: 'ШИЗО', ans: 'Помещение в ШИЗО за нарушение режима.', url: 'federation-rules.html' }
+      ];
+
+      KB.forEach(function(item) {
+        var score = 0;
+        item.keys.forEach(function(k) { if (query.includes(k)) score++; });
+        if (score > maxScore) { maxScore = score; bestMatch = item; }
+      });
+
+      var botMsg = document.createElement('div');
+      botMsg.className = 'ai-msg bot';
+      if (bestMatch) {
+        botMsg.innerHTML = '<strong>' + bestMatch.title + '</strong><br>' + bestMatch.ans + '<br><br><a href="' + bestMatch.url + '">🔗 Перейти к статье</a>';
+      } else {
+        botMsg.innerHTML = 'Не нашел статью. Спросите иначе (напр: "срок за кражу").';
+      }
+      body.appendChild(botMsg);
+      body.scrollTop = body.scrollHeight;
+    }, 500);
+  };
+</script>
+</body>
+</html>
