@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>RMRP | Процессуальный кодекс</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="logo">⚖️ RMRP <span>ФСИН</span></a>
+  <nav>
+    <a href="index.html">Главная</a>
+    <a href="federation-charter.html">Устав УФСИН</a>
+    <a href="federation-rules.html">Регламенты и ШИЗО</a>
+    <a href="uk.html">УК РФ</a>
+    <a href="koap.html">КоАП РФ</a>
+    <a href="process.html" class="active">Процессуальный</a>
+    <a href="audit.html">Калькулятор</a>
+    <a href="profile.html">Профиль</a>
+  </nav>
+</header>
+
+<div class="container mt-20">
+  <h1>🛡️ Процессуальный кодекс РФ</h1>
+  
+  <div class="doc-tools">
+    <input type="text" class="doc-search" placeholder="Поиск по статьям...">
+  </div>
+
+  <div class="accordion">
+    <div class="acc-item">
+      <button class="acc-header"><span class="acc-num">Глава II</span><span class="acc-title">Задержание и обыск</span><span class="acc-arrow">▾</span></button>
+      <div class="acc-body"><div class="acc-text">
+        <p id="art-6"><strong>Статья 6.</strong> Задержание подозреваемого — не более 60 минут.</p>
+        <p id="art-9"><strong>Статья 9.</strong> Права задержанного. Время ожидания адвоката — 5 минут.</p>
+        <p id="art-19"><strong>Статья 19.1.</strong> Личный обыск — может быть произведен без постановления при задержании лица.</p>
+      </div></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll('.acc-header').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.acc-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.acc-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+</script>
+</body>
+</html>
