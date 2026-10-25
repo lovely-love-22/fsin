@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>RMRP | КоАП РФ</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="logo">⚖️ RMRP <span>ФСИН</span></a>
+  <nav>
+    <a href="index.html">Главная</a>
+    <a href="federation-charter.html">Устав УФСИН</a>
+    <a href="federation-rules.html">Регламенты и ШИЗО</a>
+    <a href="uk.html">УК РФ</a>
+    <a href="koap.html" class="active">КоАП РФ</a>
+    <a href="process.html">Процессуальный</a>
+    <a href="audit.html">Калькулятор</a>
+    <a href="profile.html">Профиль</a>
+  </nav>
+</header>
+
+<div class="container mt-20">
+  <h1>📋 Кодекс об административных правонарушениях</h1>
+  
+  <div class="doc-tools">
+    <input type="text" class="doc-search" placeholder="Поиск по статьям КоАП...">
+  </div>
+
+  <div class="accordion">
+    <div class="acc-item">
+      <button class="acc-header"><span class="acc-num">Глава VIII</span><span class="acc-title">Правонарушения против общественного порядка</span><span class="acc-arrow">▾</span></button>
+      <div class="acc-body"><div class="acc-text">
+        <p id="art-8.1"><strong>Статья 8.1.</strong> Мелкое хулиганство — штраф до 30.000 или арест на 7 суток.</p>
+        <p id="art-8.2"><strong>Статья 8.2.</strong> Побои — штраф до 30.000 или арест на 7 суток.</p>
+        <p id="art-8.7"><strong>Статья 8.7.</strong> Неповиновение законному распоряжению — штраф до 30.000 или арест на 14 суток.</p>
+      </div></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll('.acc-header').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.acc-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.acc-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+</script>
+</body>
+</html>
