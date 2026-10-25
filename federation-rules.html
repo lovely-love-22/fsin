@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RMRP | Регламенты УФСИН</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root { --bg: #05080a; --card: #0b1116; --border: #16222d; --accent: #3b82f6; --text: #c9d1d9; --dim: #8b949e; }
+body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
+header { border-bottom: 1px solid var(--border); padding: 20px; display: flex; justify-content: space-between; align-items: center; }
+.logo { font-size: 20px; font-weight: 900; font-family: 'JetBrains Mono', monospace; color: #fff; text-decoration: none; }
+.logo span { color: var(--accent); }
+nav { display: flex; gap: 15px; font-family: 'JetBrains Mono', monospace; font-size: 13px; }
+nav a { color: var(--dim); text-decoration: none; padding: 6px 12px; border-radius: 6px; }
+nav a.active { background: var(--accent); color: #000; font-weight: bold; }
+.container { max-width: 900px; margin: 40px auto; padding: 0 20px; }
+h1 { font-family: 'JetBrains Mono', monospace; color: #fff; margin-bottom: 30px; font-size: 28px; }
+.accordion { display: flex; flex-direction: column; gap: 10px; }
+.acc-item { background: var(--card); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+.acc-header { width: 100%; display: flex; align-items: center; gap: 14px; padding: 16px 20px; background: transparent; border: none; cursor: pointer; text-align: left; color: #fff; font-size: 16px; font-weight: 600; }
+.acc-header:hover { background: rgba(59, 130, 246, 0.05); }
+.acc-num { font-size: 12px; color: var(--accent); font-family: 'JetBrains Mono', monospace; text-transform: uppercase; min-width: 70px; }
+.acc-title { flex: 1; }
+.acc-arrow { color: var(--dim); transition: 0.3s; }
+.acc-item.open .acc-arrow { transform: rotate(180deg); color: var(--accent); }
+.acc-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+.acc-item.open .acc-body { max-height: 5000px; }
+.acc-text { padding: 0 20px 20px 20px; font-size: 14.5px; line-height: 1.7; color: var(--text); border-top: 1px dashed var(--border); padding-top: 15px; }
+.acc-text p { margin-bottom: 10px; }
+</style>
+</head>
+<body>
+<header>
+  <a href="index.html" class="logo">⚖️ RMRP <span>ФСИН</span></a>
+  <nav>
+    <a href="index.html">Главная</a>
+    <a href="federation-charter.html">Устав УФСИН</a>
+    <a href="federation-rules.html" class="active">Регламенты и ШИЗО</a>
+    <a href="audit.html">Калькулятор</a>
+    <a href="profile.html">Профиль</a>
+  </nav>
+</header>
+
+<div class="container">
+  <h1>🛡️ Регламенты и ШИЗО</h1>
+  
+  <div class="accordion" id="accordion">
+    <div class="acc-item">
+      <button class="acc-header"><span class="acc-num">Раздел 1</span><span class="acc-title">Допуск к территории</span><span class="acc-arrow">▾</span></button>
+      <div class="acc-body"><div class="acc-text">
+        <p><strong>Статья 22-23:</strong> Территория камер предварительного заключения закрыта. Допуск имеют Председатель Правительства, сотрудники госорганизаций при процессуальных действиях.</p>
+        <p><strong>Статья 24-27:</strong> Вся территория учреждения закрыта. Охраняемая — парковка и 15 метров от ограждения. Адвокаты и родственники только в комнате свиданий в сопровождении.</p>
+      </div></div>
+    </div>
+
+    <div class="acc-item">
+      <button class="acc-header"><span class="acc-num">Раздел 2</span><span class="acc-title">Личный обыск (Ст. 19.1 ПК РФ)</span><span class="acc-arrow">▾</span></button>
+      <div class="acc-body"><div class="acc-text">
+        <p><strong>Статья 19.1 ПК РФ:</strong> Личный обыск - подозреваемый может быть подвергнут личному обыску в порядке, установленном настоящим Кодексом. Основанием производства личного обыска задержанного является наличие достаточных данных полагать, что в каком-либо месте или у какого-либо лица могут находиться орудия, оборудование или иные средства совершения преступления, предметы, документы и ценности, которые могут иметь значение для установления факта вины или невиновности лица. Личный обыск может быть произведен без соответствующего постановления при задержании лица или заключении его под стражу...</p>
+      </div></div>
+    </div>
+
+    <div class="acc-item">
+      <button class="acc-header"><span class="acc-num">Раздел 3</span><span class="acc-title">ШИЗО и изменение срока</span><span class="acc-arrow">▾</span></button>
+      <div class="acc-body"><div class="acc-text">
+        <p><strong>Статья 17 (Сокращение срока):</strong> За примерное поведение срок сокращается до 1/3, за сотрудничество до 1/2, за раскаяние до 2/3.</p>
+        <p><strong>Статья 18 (ШИЗО):</strong> За нарушение режима, провокации и невыполнение плана — продление срока или помещение в изолятор. За повторные нарушения до 1/3, за неисполнение плана до 1/2, за провокации до 2/3.</p>
+      </div></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll('.acc-header').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var item = btn.closest('.acc-item');
+      var isOpen = item.classList.contains('open');
+      document.querySelectorAll('.acc-item').forEach(function(i){ i.classList.remove('open'); });
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+</script>
+</body>
+</html>
