@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#05080a">
 <title>RMRP | УФСИН РФ</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚖️</text></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -28,11 +29,13 @@
   <a href="index.html" class="logo"><span>⚖️</span> RMRP <span>ФСИН</span></a>
   <nav>
     <a href="index.html" class="active">Главная</a>
+    <a href="fz-fsin.html">ФЗ О ФСИН</a>
     <a href="federation-charter.html">Устав УФСИН</a>
     <a href="federation-rules.html">Регламенты и ШИЗО</a>
     <a href="uk.html">УК РФ</a>
     <a href="koap.html">КоАП РФ</a>
     <a href="process.html">Процессуальный</a>
+    <a href="property.html">Госсобственность</a>
     <a href="audit.html">Калькулятор</a>
     <a href="profile.html">Профиль</a>
     <a href="#" id="aiBtn">🤖 ИИ-Юрист</a>
@@ -46,7 +49,7 @@
     <span style="font-size:10px; color:#8b949e;">СПРАВКА</span>
   </div>
   <div class="ai-chat-body" id="aiChatBody">
-    <div class="ai-msg bot">Приветствую. Спроси меня о статье (напр: "срок за кражу").</div>
+    <div class="ai-msg bot">Приветствую. Спроси меня о статье (напр: "срок за кражу", "Кремль" или "19.1").</div>
   </div>
   <div class="ai-chat-input-wrap">
     <input type="text" class="ai-chat-input" id="aiChatInput" placeholder="Введите вопрос..." onkeypress="if(event.key==='Enter')window.sendAI()">
@@ -61,6 +64,11 @@
   </div>
 
   <div class="grid">
+    <a href="fz-fsin.html" class="card">
+      <div class="card-icon">📜</div>
+      <div class="card-title">ФЗ О ФСИН</div>
+      <div class="card-desc">Федеральный закон о назначении, полномочиях и деятельности ФСИН.</div>
+    </a>
     <a href="federation-charter.html" class="card">
       <div class="card-icon">📕</div>
       <div class="card-title">Устав ИК-7 УФСИН</div>
@@ -90,6 +98,11 @@
       <div class="card-icon">📋</div>
       <div class="card-title">КоАП РФ</div>
       <div class="card-desc">Административные правонарушения.</div>
+    </a>
+    <a href="property.html" class="card">
+      <div class="card-icon">🏢</div>
+      <div class="card-title">Госсобственность</div>
+      <div class="card-desc">ФЗ о государственной собственности и закрытых территориях.</div>
     </a>
   </div>
 </div>
